@@ -52,7 +52,7 @@ function TraitGridComponent({
               }}
               type="button"
             >
-              <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded">
+              <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded">
                 <img
                   src={trait.image}
                   alt={trait.name}
