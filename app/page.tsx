@@ -32,6 +32,8 @@ function findTrait(
   return data[side][category]?.find((trait) => trait.id === id) ?? null;
 }
 
+const categories: Category[] = ["head", "body", "accessory"];
+
 export default function Home() {
   const [selections, setSelections] = useState<Selections>(defaultSelections);
   const [hoveredTrait, setHoveredTrait] = useState<Trait | null>(null);
@@ -72,19 +74,51 @@ export default function Home() {
     }));
   };
 
+  const renderSelectedList = (traits: {
+    head: Trait | null;
+    body: Trait | null;
+    accessory: Trait | null;
+  }) => {
+    const picked = categories
+      .map((c) => traits[c])
+      .filter((t): t is Trait => Boolean(t));
+
+    if (!picked.length) return null;
+
+    return (
+      <ul className="list-disc space-y-1 pl-4 pr-2 text-sm text-slate-800">
+        {picked.map((trait) => (
+          <li key={trait.id}>{trait.name}</li>
+        ))}
+      </ul>
+    );
+  };
+
   return (
     <main className="min-h-screen bg-transparent text-slate-900" style={{ cursor: "none" }}>
       <PixelCursor />
       <div className="mx-auto flex w-full max-w-[100vw] flex-col gap-8 px-3 py-10 md:px-6">
-        <header className="flex flex-col gap-3">
+        <header className="flex flex-col items-center gap-3 text-center">
           <p className="text-sm uppercase tracking-[0.2em] text-indigo-500">
             Tricksters in World Culture • Final Project
           </p>
-          <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">
-           Trickster Battle Builder
+          <h1
+            className="text-3xl font-bold text-slate-900 sm:text-5xl"
+            style={{ fontFamily: "var(--font-russo-one)" }}
+          >
+            Trickster Battle Builder
           </h1>
-          <p className="max-w-2xl text-sm text-slate-600">
-            This project simulates trickster dynamics across unequal power positions, pitting a power<i>less</i> trickster against a trickster <i>in power</i>. We were inspired by trickster stories explored in our course. Read our full project rationale <a href="https://docs.google.com/document/d/e/2PACX-1vSt85h3GQmbFCk-iSfjKDl0WJJGGCldVhN4qAKmkyAY1iM7VkCDDSOgUpelZSd-xs70V8y5xZIlL2pQ/pub" target="_blank" rel="noopener noreferrer" className="text-indigo-600 underline hover:text-indigo-700">here</a>. 
+          <p className="max-w-3xl text-sm text-slate-600">
+            This project simulates trickster dynamics across unequal power positions, pitting a power<i>less</i> trickster against a trickster <i>in power</i>. We were inspired by trickster stories explored in our course. Read our full project rationale{" "}
+            <a
+              href="https://docs.google.com/document/d/e/2PACX-1vSt85h3GQmbFCk-iSfjKDl0WJJGGCldVhN4qAKmkyAY1iM7VkCDDSOgUpelZSd-xs70V8y5xZIlL2pQ/pub"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-indigo-600 underline hover:text-indigo-700"
+            >
+              here
+            </a>
+            .
           </p>
         </header>
 
@@ -101,18 +135,22 @@ export default function Home() {
 
           <div className="flex w-full flex-col items-center justify-start gap-6 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 md:max-w-[640px] lg:flex-[1.02] lg:max-w-[760px]">
             <div className="flex w-full flex-col items-center justify-center gap-6 overflow-x-auto px-2 sm:flex-row sm:gap-8 xl:gap-10">
-              <CharacterCanvas
-                label="Powerless Trickster"
-                outlineSrc={outlineSrc}
-                selectedTraits={selectedTraits.powerless}
-                onHover={setHoveredTrait}
-              />
-              <CharacterCanvas
-                label="Trickster in Power"
-                outlineSrc={outlineSrc}
-                selectedTraits={selectedTraits.powerful}
-                onHover={setHoveredTrait}
-              />
+              <div className="flex flex-col items-center">
+                <CharacterCanvas
+                  label="Powerless Trickster"
+                  outlineSrc={outlineSrc}
+                  selectedTraits={selectedTraits.powerless}
+                  onHover={setHoveredTrait}
+                />
+              </div>
+              <div className="flex flex-col items-center">
+                <CharacterCanvas
+                  label="Trickster in Power"
+                  outlineSrc={outlineSrc}
+                  selectedTraits={selectedTraits.powerful}
+                  onHover={setHoveredTrait}
+                />
+              </div>
             </div>
             <div className="w-full rounded-xl border border-slate-200 bg-white/70 px-4 py-3 text-center">
               {hoveredTrait ? (
@@ -133,6 +171,14 @@ export default function Home() {
                   Assemble your tricksters
                 </div>
               )}
+            </div>
+            <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="flex flex-col items-center">
+                {renderSelectedList(selectedTraits.powerless)}
+              </div>
+              <div className="flex flex-col items-center">
+                {renderSelectedList(selectedTraits.powerful)}
+              </div>
             </div>
           </div>
 
