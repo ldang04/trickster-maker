@@ -2,6 +2,7 @@
 
 import rawFeatures from "@/app/features.json";
 import { CharacterCanvas } from "@/src/components/character-canvas";
+import { PixelCursor } from "@/src/components/pixel-cursor";
 import { TraitMenu } from "@/src/components/trait-menu";
 import {
   Category,
@@ -72,7 +73,8 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-transparent text-slate-900">
+    <main className="min-h-screen bg-transparent text-slate-900" style={{ cursor: "none" }}>
+      <PixelCursor />
       <div className="mx-auto flex w-full max-w-[100vw] flex-col gap-8 px-3 py-10 md:px-6">
         <header className="flex flex-col gap-3">
           <p className="text-sm uppercase tracking-[0.2em] text-indigo-500">
@@ -106,7 +108,7 @@ export default function Home() {
                 onHover={setHoveredTrait}
               />
               <CharacterCanvas
-                label="Powerful Trickster"
+                label="Trickster in Power"
                 outlineSrc={outlineSrc}
                 selectedTraits={selectedTraits.powerful}
                 onHover={setHoveredTrait}
