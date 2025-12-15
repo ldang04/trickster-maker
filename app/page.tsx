@@ -36,7 +36,8 @@ const categories: Category[] = ["head", "body", "accessory"];
 
 export default function Home() {
   const [selections, setSelections] = useState<Selections>(defaultSelections);
-  const [hoveredTrait, setHoveredTrait] = useState<Trait | null>(null);
+  const [activeTrait, setActiveTrait] = useState<Trait | null>(null);
+  const [hoverTrait, setHoverTrait] = useState<Trait | null>(null);
 
   const selectedTraits = useMemo(
     () => ({
@@ -72,6 +73,8 @@ export default function Home() {
         [category]: traitId,
       },
     }));
+    const trait = findTrait(features, side, category, traitId);
+    if (trait) setActiveTrait(trait);
   };
 
   const renderSelectedList = (traits: {
@@ -86,7 +89,7 @@ export default function Home() {
     if (!picked.length) return null;
 
     return (
-      <ul className="list-disc space-y-1 pl-4 pr-2 text-sm text-slate-800">
+      <ul className="list-disc space-y-1 pl-4 pr-2 text-sm" style={{ color: '#756550', fontFamily: 'var(--font-varela-round)' }}>
         {picked.map((trait) => (
           <li key={trait.id}>{trait.name}</li>
         ))}
@@ -95,52 +98,57 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-transparent text-slate-900" style={{ cursor: "none" }}>
+    <main className="flex min-h-screen flex-col bg-transparent text-slate-900" style={{ cursor: "none" }}>
       <PixelCursor />
-      <div className="mx-auto flex w-full max-w-[100vw] flex-col gap-8 px-3 py-10 md:px-6">
-        <header className="flex flex-col items-center gap-3 text-center">
-          <p className="text-sm uppercase tracking-[0.2em] text-indigo-500">
-            Tricksters in World Culture • Final Project
-          </p>
-          <h1
-            className="text-3xl font-bold text-slate-900 sm:text-5xl"
-            style={{ fontFamily: "var(--font-russo-one)" }}
-          >
-            Trickster Battle Builder
-          </h1>
-          <p className="max-w-3xl text-sm text-slate-600">
-            This project simulates trickster dynamics across unequal power positions, pitting a power<i>less</i> trickster against a trickster <i>in power</i>. We were inspired by trickster stories explored in our course. Read our full project rationale{" "}
-            <a
-              href="https://docs.google.com/document/d/e/2PACX-1vSt85h3GQmbFCk-iSfjKDl0WJJGGCldVhN4qAKmkyAY1iM7VkCDDSOgUpelZSd-xs70V8y5xZIlL2pQ/pub"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-indigo-600 underline hover:text-indigo-700"
+      <div className="mx-auto flex w-full max-w-[100vw] flex-col gap-8 px-0 py-0 md:px-0">
+        <div className="scalloped-banner relative w-full">
+          <div className="scalloped-edge"></div>
+          <div className="mx-auto max-w-5xl px-6 pt-5 md:px-10 md:pt-6 pb-10">
+            <header className="flex flex-col items-center gap-3 text-center">
+       
+            <h1
+              className="text-3xl font-bold sm:text-5xl"
+              style={{ fontFamily: "var(--font-russo-one)", color: '#756550' }}
             >
-              here
-            </a>
-            .
-          </p>
-        </header>
+              Trickster Battle Builder
+            </h1>
+            <p className="max-w-3xl text-sm" style={{ color: '#756550', fontFamily: 'var(--font-varela-round)' }}>
+              This project simulates trickster dynamics across unequal power positions, pitting a powerless trickster against a trickster <i>in power</i>. We were inspired by the characters and stories explored in our Tricksters in World Culture course. <br /> Read our rationale and game interpretation {" "}
+              <a
+                href="https://docs.google.com/document/d/e/2PACX-1vSt85h3GQmbFCk-iSfjKDl0WJJGGCldVhN4qAKmkyAY1iM7VkCDDSOgUpelZSd-xs70V8y5xZIlL2pQ/pub"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-600 underline hover:text-indigo-700"
+              >
+                here
+              </a>
+              .
+            </p>
+          </header>
+          </div>
+        </div>
 
-        <div className="flex w-full flex-col items-stretch justify-center gap-6 overflow-x-auto lg:flex-row">
+        <div className="mx-auto flex w-full max-w-[100vw] flex-col gap-6 px-3 pb-10 md:px-6">
+          <div className="flex w-full flex-col items-stretch justify-center gap-6 overflow-x-auto lg:flex-row">
           <div className="w-full shrink-0 lg:w-[240px] xl:w-[280px]">
             <TraitMenu
               side="powerless"
               traitsByCategory={features.powerless}
               selections={selections}
               onSelect={handleSelect}
-            onHover={setHoveredTrait}
+              onHover={setHoverTrait}
             />
           </div>
 
-          <div className="flex w-full flex-col items-center justify-start gap-6 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 md:max-w-[640px] lg:flex-[1.02] lg:max-w-[760px]">
+          <div className="flex w-full flex-col items-center justify-start gap-6 rounded-2xl border-[4px] bg-[#f9f5b5] p-4 sm:p-5 md:max-w-[640px] lg:flex-[1.02] lg:max-w-[760px]" style={{ borderColor: '#fcdf8d' }}>
             <div className="flex w-full flex-col items-center justify-center gap-6 overflow-x-auto px-2 sm:flex-row sm:gap-8 xl:gap-10">
               <div className="flex flex-col items-center">
                 <CharacterCanvas
                   label="Powerless Trickster"
                   outlineSrc={outlineSrc}
                   selectedTraits={selectedTraits.powerless}
-                  onHover={setHoveredTrait}
+                  onTraitClick={setActiveTrait}
+                  onTraitHover={setHoverTrait}
                 />
               </div>
               <div className="flex flex-col items-center">
@@ -148,26 +156,27 @@ export default function Home() {
                   label="Trickster in Power"
                   outlineSrc={outlineSrc}
                   selectedTraits={selectedTraits.powerful}
-                  onHover={setHoveredTrait}
+                  onTraitClick={setActiveTrait}
+                  onTraitHover={setHoverTrait}
                 />
               </div>
             </div>
-            <div className="w-full rounded-xl border border-slate-200 bg-white/70 px-4 py-3 text-center">
-              {hoveredTrait ? (
-                <div className="flex flex-col gap-1 text-sm text-slate-800">
-                  <div className="text-base font-semibold text-slate-900">
-                    {hoveredTrait.name}
+            <div className="w-full rounded-xl border-[4px] bg-white/70 px-4 py-3 text-center" style={{ borderColor: '#fcdf8d' }}>
+              {hoverTrait ?? activeTrait ? (
+                <div className="flex flex-col gap-1 text-sm" style={{ color: '#756550' }}>
+                  <div className="text-lg font-semibold" style={{ fontFamily: 'var(--font-russo-one)' }}>
+                    {(hoverTrait ?? activeTrait)!.name}
                   </div>
-                  <div className="text-xs font-medium text-slate-600">
+                  <div className="text-xs font-medium" style={{ fontFamily: 'var(--font-varela-round)' }}>
                     Trickster reference:{" "}
-                    {hoveredTrait.story_or_reference ?? "—"}
+                    {(hoverTrait ?? activeTrait)!.story_or_reference ?? "—"}
                   </div>
-                  <div className="text-sm text-slate-700">
-                    {hoveredTrait.description}
+                  <div className="text-sm" style={{ fontFamily: 'var(--font-varela-round)' }}>
+                    {(hoverTrait ?? activeTrait)!.description}
                   </div>
                 </div>
               ) : (
-                <div className="text-lg font-bold text-slate-500">
+                <div className="text-2xl font-bold" style={{ color: '#756550', fontFamily: 'var(--font-russo-one)' }}>
                   Assemble your tricksters
                 </div>
               )}
@@ -188,11 +197,15 @@ export default function Home() {
               traitsByCategory={features.powerful}
               selections={selections}
               onSelect={handleSelect}
-            onHover={setHoveredTrait}
+              onHover={setHoverTrait}
             />
           </div>
         </div>
+        </div>
       </div>
+      <footer className="mt-auto flex justify-end px-4 py-2 text-xs" style={{ fontFamily: 'var(--font-varela-round)', color: '#5e79d6' }}>
+        Final project by Diem Linh Dang & Aleksandra Ermilova
+      </footer>
     </main>
   );
 }

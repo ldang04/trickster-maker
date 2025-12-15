@@ -22,16 +22,14 @@ export function TraitMenu({
 }: TraitMenuProps) {
   return (
     <aside
-      className="flex h-full flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-3"
+      className="flex h-full flex-col gap-4 rounded-2xl border-[4px] bg-[#beebe0] p-3"
+      style={{ borderColor: '#a2e2da' }}
       onMouseLeave={() => onHover?.(null)}
     >
       <header className="flex items-center justify-between">
         <div className="flex flex-col">
-          <span className="text-xs font-semibold uppercase text-slate-500">
-            {side === "powerless" ? "Powerless" : "Powerful"}
-          </span>
-          <h2 className="text-lg font-semibold text-slate-900">
-            Trait Menu
+          <h2 className="text-lg font-semibold text-slate-900" style={{ fontFamily: 'var(--font-varela-round)' }}>
+            {side === "powerless" ? "Traits of the Powerless" : "Traits of the Powerful"}
           </h2>
         </div>
       </header>

@@ -4,7 +4,8 @@ type CharacterCanvasProps = {
   label: string;
   outlineSrc: string;
   selectedTraits: Partial<Record<Category, Trait | null>>;
-  onHover?: (trait: Trait | null) => void;
+  onTraitClick?: (trait: Trait) => void;
+  onTraitHover?: (trait: Trait | null) => void;
 };
 
 const defaultZ: Record<Category, number> = {
@@ -17,21 +18,47 @@ export function CharacterCanvas({
   label,
   outlineSrc,
   selectedTraits,
-  onHover,
+  onTraitClick,
+  onTraitHover,
 }: CharacterCanvasProps) {
   const orderedCategories: Category[] = ["body", "head", "accessory"];
+
+  const isPowerless = label === "Powerless Trickster";
 
   return (
     <div
       className="flex flex-col items-center gap-3"
-      onMouseLeave={() => onHover?.(null)}
+      onMouseLeave={() => onTraitHover?.(null)}
     >
-      <span className="text-sm font-semibold uppercase tracking-wide text-slate-700">
-        {label}
-      </span>
+      {isPowerless ? (
+        <span 
+          className="text-sm font-bold uppercase tracking-wide rounded-xl px-4 py-1" 
+          style={{ 
+            color: 'white', 
+            fontFamily: 'var(--font-varela-round)',
+            backgroundColor: '#587ad4',
+            border: '3px solid #c1d3f2'
+          }}
+        >
+          {label}
+        </span>
+      ) : (
+        <span 
+          className="text-sm font-bold uppercase tracking-wide rounded-xl px-4 py-1" 
+          style={{ 
+            color: 'white', 
+            fontFamily: 'var(--font-varela-round)',
+            backgroundColor: '#f37373',
+            border: '3px solid #fde3d4'
+          }}
+        >
+          {label}
+        </span>
+      )}
       <div
-        className="relative h-[340px] w-[230px] overflow-hidden rounded-2xl border border-slate-200 bg-white sm:h-[400px] sm:w-[260px] lg:h-[440px] lg:w-[300px]"
+        className="relative h-[340px] w-[230px] overflow-hidden rounded-2xl border-[4px] bg-white sm:h-[400px] sm:w-[260px] lg:h-[440px] lg:w-[300px]"
         style={{
+          borderColor: '#fcdf8d',
           backgroundImage:
             "linear-gradient(to right, rgba(148, 163, 184, 0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(148, 163, 184, 0.2) 1px, transparent 1px)",
           backgroundSize: "24px 24px",
@@ -63,8 +90,8 @@ export function CharacterCanvas({
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = "/file.svg";
               }}
-              onMouseEnter={() => onHover?.(trait)}
-              onMouseLeave={() => onHover?.(null)}
+              onClick={() => onTraitClick?.(trait)}
+              onMouseEnter={() => onTraitHover?.(trait)}
             />
           );
         })}

@@ -23,7 +23,7 @@ function TraitGridComponent({
   return (
     <section className="flex flex-col gap-3">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold capitalize text-slate-800">
+        <h3 className="text-sm font-semibold capitalize text-slate-800" style={{ fontFamily: 'var(--font-varela-round)' }}>
           {category}
         </h3>
       </div>
@@ -31,20 +31,26 @@ function TraitGridComponent({
         {traits.map((trait) => {
           const isSelected = trait.id === selectedId;
           const baseClasses =
-            "group flex flex-col items-center gap-1 rounded-lg bg-[#f9f4e0] p-1.5 text-center transition";
+            "group flex flex-col items-center gap-1 rounded-lg bg-[#f9f4e0] p-1.5 text-center transition border-2";
           return (
             <button
               key={trait.id}
               onClick={() => onSelect(trait.id)}
-              className={
-                baseClasses +
-                " " +
-                (isSelected
-                  ? "ring-2 ring-indigo-200"
-                  : "hover:ring-2 hover:ring-indigo-100")
-              }
+              className={baseClasses}
+              style={{
+                borderColor: isSelected ? '#a2e2da' : 'transparent',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = '#a2e2da';
+                onHover?.(trait);
+              }}
+              onMouseLeave={(e) => {
+                if (!isSelected) {
+                  e.currentTarget.style.borderColor = 'transparent';
+                }
+                onHover?.(null);
+              }}
               type="button"
-              onMouseEnter={() => onHover?.(trait)}
             >
               <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded">
                 <img
@@ -58,7 +64,7 @@ function TraitGridComponent({
                 />
               </div>
               <div className="flex flex-col gap-0.5">
-                <span className="text-[9px] font-semibold" style={{ color: '#8b7665' }}>
+                <span className="text-[9px] font-semibold" style={{ color: '#756550', fontFamily: 'var(--font-russo-one)' }}>
                   {trait.name}
                 </span>
               </div>

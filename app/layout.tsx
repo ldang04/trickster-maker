@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Russo_One } from "next/font/google";
+import { Geist, Geist_Mono, Russo_One, Varela_Round } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,6 +18,12 @@ const russoOne = Russo_One({
   subsets: ["latin"],
 });
 
+const varelaRound = Varela_Round({
+  variable: "--font-varela-round",
+  weight: "400",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Trickster Battle Builder",
   description: "Simulate trickster dynamics across unequal power positions",
@@ -31,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${russoOne.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${russoOne.variable} ${varelaRound.variable} antialiased`}
       >
         {children}
       </body>
