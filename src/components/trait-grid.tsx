@@ -31,7 +31,7 @@ function TraitGridComponent({
         {traits.map((trait) => {
           const isSelected = trait.id === selectedId;
           const baseClasses =
-            "group flex flex-col items-center gap-1 rounded-lg bg-[#f9f4e0] p-1.5 text-center transition border-2";
+          "group flex flex-col items-center gap-1 rounded-lg bg-white p-1.5 text-center transition border-2";
           return (
             <button
               key={trait.id}
@@ -52,7 +52,7 @@ function TraitGridComponent({
               }}
               type="button"
             >
-              <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded">
+              <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded">
                 <img
                   src={trait.image}
                   alt={trait.name}
