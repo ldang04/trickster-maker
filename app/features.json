@@ -7,7 +7,7 @@
           "story_or_reference": "Maria I and Maria II from Daisies",
           "description": "Uses charm and desire as a tactical interface: by appearing desirable, compliant, or harmless, the seducer redirects others’ choices so they act in her interest while believing they act freely. Its power lies in converting patriarchal social expectations and emotional vulnerability into leverage, making influence feel like consent rather than coercion (Jurich).",
           "image": "https://i.imgur.com/yiwNT6p.png",
-          "transform": { "x": 0, "y": -20, "scale": 1 }
+          "transform": { "x": 0, "y": -115, "scale": 0.4 }
         },
         {
           "id": "nonseductive_trickstar",
@@ -15,7 +15,7 @@
           "story_or_reference": "Shapoklyak",
           "description": "Rejects desirability, decorum, and normative femininity altogether, operating outside patriarchal scripts that regulate behavior through attractiveness, respectability, or shame. Its power lies in becoming socially ungovernable: by refusing to “perform correctly,” the trickster gains freedom to transgress, prank, and manipulate without owing coherence, likability, or moral justification (Jurich).",
           "image": "https://i.imgur.com/nLlt7gX.png",
-          "transform": { "x": 0, "y": -18, "scale": 1 }
+          "transform": { "x": 0, "y": -155, "scale": 0.4 }
         },
         {
           "id": "jester",
@@ -23,7 +23,7 @@
           "story_or_reference": "Court Jester",
           "description": "Occupies a sanctioned role of licensed misrule, using humor, exaggeration, and absurd performance to speak truths that would be dangerous or forbidden from any other position. Its power lies in institutionalized immunity.",
           "image": "https://i.imgur.com/SkRwSRz.png",
-          "transform": { "x": 0, "y": -22, "scale": 1 }
+          "transform": { "x": 3, "y": -170, "scale": 0.4 }
         },
         {
           "id": "picaro",
@@ -31,7 +31,7 @@
           "story_or_reference": "Ostap Bender",
           "description": "Survives by mobility, improvisation, and clever deception, moving episodically through social systems without loyalty to institutions, morality, or long-term plans. Its power lies in structural illegibility.",
           "image": "https://i.imgur.com/gz4AkUK.png",
-          "transform": { "x": 0, "y": -20, "scale": 1 }
+          "transform": { "x": 0, "y": -133, "scale": 0.37}
         },
         {
           "id": "simpleton",
@@ -39,7 +39,7 @@
           "story_or_reference": "Forrest Gump",
           "description": "Performs innocent “not-understanding” as a protective stance, creating a zone where seriousness, logic, and direct accountability lose their force.",
           "image": "https://i.imgur.com/taspFTB.png",
-          "transform": { "x": 0, "y": -16, "scale": 1 }
+          "transform": { "x": 0, "y": -118, "scale": 0.2 }
         },
         {
           "id": "holy_fool",
@@ -47,7 +47,7 @@
           "story_or_reference": "Ksenia of St. Petersburg",
           "description": "Performs radical humility, madness, and self-abasement as a spiritual technique, deliberately violating social norms in order to speak moral truth without worldly authority.",
           "image": "https://i.imgur.com/VCFh2f6.png",
-          "transform": { "x": 0, "y": -24, "scale": 1 }
+          "transform": { "x": 0, "y": -180, "scale": 0.3 }
         }
       ],
       "body": [
@@ -57,7 +57,7 @@
           "story_or_reference": "Troubadour",
           "description": "Stages deception, critique, or persuasion as spectacle, using song, humor, costume, and gesture so meaning is carried by performance rather than literal statement.",
           "image": "https://i.imgur.com/Oho4sYn.png",
-          "transform": { "x": 0, "y": 10, "scale": 1 }
+          "transform": { "x": 0, "y": 10, "scale": 0.6 }
         },
         {
           "id": "chaotic_pranks",
@@ -65,7 +65,7 @@
           "story_or_reference": "Karlsson",
           "description": "Creates disruption through impulsive, exaggerated action—pranks that escalate, spill over, and often backfire.",
           "image": "https://i.imgur.com/VLcSN7x.png",
-          "transform": { "x": 0, "y": 12, "scale": 1 }
+          "transform": { "x": 0, "y": -10, "scale": 0.5 }
         },
         {
           "id": "shapeshifting_fox",
@@ -73,7 +73,7 @@
           "story_or_reference": "Fox Trickster",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/jFKlzKS.png",
-          "transform": { "x": 0, "y": 8, "scale": 1 }
+          "transform": { "x": 70, "y": 0, "scale": 0.5 }
         },
         {
           "id": "social_disruption",
@@ -81,7 +81,7 @@
           "story_or_reference": "Beaver Trickster",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/M6Ij86U.png",
-          "transform": { "x": 0, "y": 10, "scale": 1 }
+          "transform": { "x": 0, "y": 10, "scale": 0.5 }
         }
       ],
       "accessory": [
@@ -91,7 +91,7 @@
           "story_or_reference": "Jewelry",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/h3YYM30.png",
-          "transform": { "x": 10, "y": 0, "scale": 0.8 }
+          "transform": { "x": 53, "y": 20, "scale": 0.16 }
         },
         {
           "id": "liminality",
@@ -99,7 +99,7 @@
           "story_or_reference": "Backpack",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/PfpOJta.png",
-          "transform": { "x": -12, "y": 0, "scale": 0.8 }
+          "transform": { "x": -50, "y": 105, "scale": 0.4 }
         },
         {
           "id": "literalism",
@@ -107,7 +107,7 @@
           "story_or_reference": "Building Communism",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/S1TQ7cC.png",
-          "transform": { "x": 0, "y": 15, "scale": 0.75 }
+          "transform": { "x": -50, "y": 93, "scale": 0.3 }
         },
         {
           "id": "laughter",
@@ -115,7 +115,7 @@
           "story_or_reference": "Clown Nose",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/DQ96yt0.png",
-          "transform": { "x": 0, "y": -5, "scale": 0.6 }
+          "transform": { "x": -2, "y": -110, "scale": 0.2 }
         },
         {
           "id": "quick_tongue",
@@ -123,7 +123,7 @@
           "story_or_reference": "Speech Bubble",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/hN04UnV.png",
-          "transform": { "x": 15, "y": -10, "scale": 0.7 }
+          "transform": { "x": 80, "y": -120, "scale": 0.4 }
         },
         {
           "id": "scheme",
@@ -131,7 +131,7 @@
           "story_or_reference": "Chess Knight",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/GSowDvV.png",
-          "transform": { "x": -15, "y": -10, "scale": 0.7 }
+          "transform": { "x": -55, "y": 75, "scale": 0.2 }
         }
       ]
     },
@@ -143,7 +143,7 @@
           "story_or_reference": "Capital Power",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/R0ndG4g.png",
-          "transform": { "x": 0, "y": -20, "scale": 1 }
+          "transform": { "x": 0, "y": -120, "scale": 0.2 }
         },
         {
           "id": "social_status",
@@ -151,7 +151,7 @@
           "story_or_reference": "Crown",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/VZoiOtz.png",
-          "transform": { "x": 0, "y": -25, "scale": 1 }
+          "transform": { "x": 0, "y": -160, "scale": 0.4 }
         },
         {
           "id": "magic",
@@ -159,7 +159,7 @@
           "story_or_reference": "Eh-Ack",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/uhlZ7z0.png",
-          "transform": { "x": 0, "y": -18, "scale": 1 }
+          "transform": { "x": 0, "y": -130, "scale": 0.45 }
         }
       ],
       "body": [
@@ -169,7 +169,7 @@
           "story_or_reference": "Eh-Ack",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/eKnSjIj.png",
-          "transform": { "x": 0, "y": 10, "scale": 1.1 }
+          "transform": { "x": 0, "y": -10, "scale": 0.5 }
         },
         {
           "id": "quests",
@@ -177,7 +177,7 @@
           "story_or_reference": "Heroic Trials",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/fz7azeM.png",
-          "transform": { "x": 0, "y": 12, "scale": 1 }
+          "transform": { "x": 0, "y": 12, "scale": 0.5 }
         },
         {
           "id": "media_presence",
@@ -185,7 +185,7 @@
           "story_or_reference": "Suit",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/j77hWkO.png",
-          "transform": { "x": 0, "y": 10, "scale": 1 }
+          "transform": { "x": 0, "y": 10, "scale": 0.68 }
         },
         {
           "id": "violence",
@@ -193,7 +193,7 @@
           "story_or_reference": "Benya Krik",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/GSJGzum.png",
-          "transform": { "x": 5, "y": 10, "scale": 1 }
+          "transform": { "x": 2, "y": 40, "scale": 0.29 }
         }
       ],
       "accessory": [
@@ -203,7 +203,7 @@
           "story_or_reference": "Geese-Swans",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/t4iXBwA.png",
-          "transform": { "x": -15, "y": 0, "scale": 0.8 }
+          "transform": { "x": -90, "y": 120, "scale": 0.4 }
         },
         {
           "id": "rules_laws",
@@ -211,7 +211,7 @@
           "story_or_reference": "Scroll",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/EOzdWTI.png",
-          "transform": { "x": 12, "y": 0, "scale": 0.8 }
+          "transform": { "x": -54, "y": 90, "scale": 0.3 }
         },
         {
           "id": "persuasion",
@@ -219,7 +219,7 @@
           "story_or_reference": "Speech",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/ob3S4Od.png",
-          "transform": { "x": 15, "y": -10, "scale": 0.75 }
+          "transform": { "x": 80, "y": -130, "scale": 0.35 }
         },
         {
           "id": "technology",
@@ -227,7 +227,7 @@
           "story_or_reference": "Eye Machine",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/Nwrphb8.png",
-          "transform": { "x": -15, "y": -10, "scale": 0.75 }
+          "transform": { "x": -54, "y": 90, "scale": 0.5 }
         },
         {
           "id": "object_manipulation",
@@ -235,7 +235,7 @@
           "story_or_reference": "Tiny Ship",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/sFGaKXn.png",
-          "transform": { "x": 0, "y": 15, "scale": 0.75 }
+          "transform": { "x": -54, "y": 90, "scale": 0.4 }
         },
         {
           "id": "liminality",
@@ -243,7 +243,7 @@
           "story_or_reference": "Double-Edged Key",
           "description": "PLACEHOLDER",
           "image": "https://i.imgur.com/5zcGCY7.png",
-          "transform": { "x": 0, "y": 15, "scale": 0.75 }
+          "transform": { "x": -54, "y": 60, "scale": 0.2 }
         }
       ]
     }

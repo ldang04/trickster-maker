@@ -72,8 +72,8 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 text-slate-900">
-      <div className="mx-auto flex w-full max-w-[95vw] flex-col gap-8 px-3 py-10 md:px-6">
+    <main className="min-h-screen bg-transparent text-slate-900">
+      <div className="mx-auto flex w-full max-w-[100vw] flex-col gap-8 px-3 py-10 md:px-6">
         <header className="flex flex-col gap-3">
           <p className="text-sm uppercase tracking-[0.2em] text-indigo-500">
             Tricksters in World Culture • Final Project
@@ -86,8 +86,8 @@ export default function Home() {
           </p>
         </header>
 
-        <div className="flex w-full items-start justify-center gap-6 overflow-x-auto">
-          <div className="w-[320px] shrink-0">
+        <div className="flex w-full flex-col items-stretch justify-center gap-6 overflow-x-auto lg:flex-row">
+          <div className="w-full shrink-0 lg:w-[240px] xl:w-[280px]">
             <TraitMenu
               side="powerless"
               traitsByCategory={features.powerless}
@@ -97,8 +97,8 @@ export default function Home() {
             />
           </div>
 
-          <div className="flex max-w-[750px] flex-[1.05] flex-col items-center justify-start gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="flex w-full items-start justify-center gap-8 overflow-x-auto px-2">
+          <div className="flex w-full flex-col items-center justify-start gap-6 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 md:max-w-[640px] lg:flex-[1.02] lg:max-w-[760px]">
+            <div className="flex w-full flex-col items-center justify-center gap-6 overflow-x-auto px-2 sm:flex-row sm:gap-8 xl:gap-10">
               <CharacterCanvas
                 label="Powerless Trickster"
                 outlineSrc={outlineSrc}
@@ -112,7 +112,7 @@ export default function Home() {
                 onHover={setHoveredTrait}
               />
             </div>
-            <div className="w-full rounded-xl border border-slate-200 bg-white/70 px-4 py-3 text-center shadow-sm">
+            <div className="w-full rounded-xl border border-slate-200 bg-white/70 px-4 py-3 text-center">
               {hoveredTrait ? (
                 <div className="flex flex-col gap-1 text-sm text-slate-800">
                   <div className="text-base font-semibold text-slate-900">
@@ -127,14 +127,14 @@ export default function Home() {
                   </div>
                 </div>
               ) : (
-                <div className="text-sm font-medium text-slate-500">
+                <div className="text-lg font-bold text-slate-500">
                   Assemble your tricksters
                 </div>
               )}
             </div>
           </div>
 
-          <div className="w-[320px] shrink-0">
+          <div className="w-full shrink-0 lg:w-[240px] xl:w-[280px]">
             <TraitMenu
               side="powerful"
               traitsByCategory={features.powerful}

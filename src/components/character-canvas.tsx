@@ -30,7 +30,7 @@ export function CharacterCanvas({
         {label}
       </span>
       <div
-        className="relative h-[480px] w-[320px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+        className="relative h-[340px] w-[230px] overflow-hidden rounded-2xl border border-slate-200 bg-white sm:h-[400px] sm:w-[260px] lg:h-[440px] lg:w-[300px]"
         style={{
           backgroundImage:
             "linear-gradient(to right, rgba(148, 163, 184, 0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(148, 163, 184, 0.2) 1px, transparent 1px)",
@@ -40,7 +40,7 @@ export function CharacterCanvas({
         <img
           src={outlineSrc}
           alt="Character outline"
-          className="absolute inset-0 h-full w-full object-contain"
+          className="absolute inset-0 h-full w-full object-contain scale-[1.15]"
         />
         {orderedCategories.map((category) => {
           const trait = selectedTraits[category];
@@ -54,7 +54,7 @@ export function CharacterCanvas({
               key={trait.id}
               src={trait.image}
               alt={trait.name}
-              className="absolute left-1/2 top-1/2 h-auto max-h-[460px] w-auto max-w-[300px] object-contain drop-shadow"
+              className="absolute left-1/2 top-1/2 h-auto max-h-[460px] w-auto max-w-[300px] object-contain"
               style={{
                 transform: `translate(-50%, -50%) translate(${x}px, ${y}px) scale(${scale}) rotate(${rotate}deg)`,
                 zIndex,

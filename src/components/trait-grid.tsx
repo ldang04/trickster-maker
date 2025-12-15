@@ -27,11 +27,11 @@ function TraitGridComponent({
           {category}
         </h3>
       </div>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-3">
         {traits.map((trait) => {
           const isSelected = trait.id === selectedId;
           const baseClasses =
-            "group flex flex-col items-center gap-1 rounded-md border bg-white p-2 text-center shadow-sm transition";
+            "group flex flex-col items-center gap-1 rounded-lg bg-[#f9f4e0] p-1.5 text-center transition";
           return (
             <button
               key={trait.id}
@@ -40,13 +40,13 @@ function TraitGridComponent({
                 baseClasses +
                 " " +
                 (isSelected
-                  ? "border-indigo-500 ring-2 ring-indigo-200"
-                  : "border-slate-200 hover:border-indigo-200 hover:shadow")
+                  ? "ring-2 ring-indigo-200"
+                  : "hover:ring-2 hover:ring-indigo-100")
               }
               type="button"
               onMouseEnter={() => onHover?.(trait)}
             >
-              <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded">
+              <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded">
                 <img
                   src={trait.image}
                   alt={trait.name}
@@ -58,7 +58,7 @@ function TraitGridComponent({
                 />
               </div>
               <div className="flex flex-col gap-0.5">
-                <span className="text-[10px] font-semibold text-slate-900">
+                <span className="text-[9px] font-semibold" style={{ color: '#8b7665' }}>
                   {trait.name}
                 </span>
               </div>

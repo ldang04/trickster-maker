@@ -22,7 +22,7 @@ export function TraitMenu({
 }: TraitMenuProps) {
   return (
     <aside
-      className="flex h-full flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+      className="flex h-full flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-3"
       onMouseLeave={() => onHover?.(null)}
     >
       <header className="flex items-center justify-between">
@@ -31,7 +31,7 @@ export function TraitMenu({
             {side === "powerless" ? "Powerless" : "Powerful"}
           </span>
           <h2 className="text-lg font-semibold text-slate-900">
-            Trait Library
+            Trait Menu
           </h2>
         </div>
       </header>
