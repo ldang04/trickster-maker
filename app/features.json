@@ -1,251 +1,250 @@
 {
-    "powerless": {
-      "head": [
-        {
-          "id": "seductive_trickstar",
-          "name": "Seductive Trickstar",
-          "story_or_reference": "Maria I and Maria II from Daisies",
-"description": "Uses charm and desire as a tactical interface: by appearing desirable, compliant, or harmless, the seducer redirects others' choices so they act in her interest while believing they act freely. Its power lies in converting patriarchal social expectations and emotional vulnerability into leverage, making influence feel like consent rather than coercion (Jurich).",
-          "image": "https://i.imgur.com/yiwNT6p.png",
-          "transform": { "x": 0, "y": -115, "scale": 0.4 }
-        },
-        {
-          "id": "nonseductive_trickstar",
-          "name": "Nonseductive Trickstar",
-          "story_or_reference": "Shapoklyak",
-"description": "Rejects desirability, decorum, and normative femininity altogether, operating outside patriarchal scripts that regulate behavior through attractiveness, respectability, or shame. Its power lies in becoming socially ungovernable: by refusing to \"perform correctly,\" the trickster gains freedom to transgress, prank, and manipulate without owing coherence, likability, or moral justification (Jurich).",
-          "image": "https://i.imgur.com/nLlt7gX.png",
-          "transform": { "x": 0, "y": -155, "scale": 0.4 }
-        },
-        {
-          "id": "jester",
-          "name": "Jester",
-          "story_or_reference": "Court Jester",
-"description": "Occupies a sanctioned role of licensed misrule, using humor, exaggeration, and absurd performance to speak truths that would be dangerous or forbidden from any other position. Its power lies in institutionalized immunity.",
-          "image": "https://i.imgur.com/SkRwSRz.png",
-          "transform": { "x": 3, "y": -170, "scale": 0.4 }
-        },
-        {
-          "id": "picaro",
-          "name": "Picaro",
-          "story_or_reference": "Ostap Bender",
-"description": "Survives by mobility, improvisation, and clever deception, moving episodically through social systems without loyalty to institutions, morality, or long-term plans. Its power lies in structural illegibility.",
-          "image": "https://i.imgur.com/gz4AkUK.png",
-          "transform": { "x": 0, "y": -133, "scale": 0.37}
-        },
-        {
-          "id": "simpleton",
-          "name": "Simpleton",
-          "story_or_reference": "Forrest Gump",
-"description": "Performs innocent \"not-understanding\" as a protective stance, creating a zone where seriousness, logic, and direct accountability lose their force.",
-          "image": "https://i.imgur.com/taspFTB.png",
-          "transform": { "x": 0, "y": -118, "scale": 0.2 }
-        },
-        {
-          "id": "holy_fool",
-          "name": "Holy Fool",
-          "story_or_reference": "Ksenia of St. Petersburg",
-"description": "Performs radical humility, madness, and self-abasement as a spiritual technique, deliberately violating social norms in order to speak moral truth without worldly authority.",
-          "image": "https://i.imgur.com/VCFh2f6.png",
-          "transform": { "x": 0, "y": -180, "scale": 0.3 }
-        }
-      ],
-      "body": [
-        {
-          "id": "performativity",
-          "name": "Performativity",
-          "story_or_reference": "Troubadour",
-"description": "Stages deception, critique, or persuasion as spectacle, using song, humor, costume, and gesture so meaning is carried by performance rather than literal statement.",
-          "image": "https://i.imgur.com/Oho4sYn.png",
-          "transform": { "x": 0, "y": 10, "scale": 0.6 }
-        },
-        {
-          "id": "chaotic_pranks",
-          "name": "Chaotic Pranks",
-          "story_or_reference": "Karlsson",
-"description": "Creates disruption through impulsive, exaggerated action—pranks that escalate, spill over, and often backfire.",
-          "image": "https://i.imgur.com/VLcSN7x.png",
-          "transform": { "x": 0, "y": -10, "scale": 0.5 }
-        },
-        {
-          "id": "shapeshifting_fox",
-          "name": "Shapeshifting",
-          "story_or_reference": "Fox Trickster",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/jFKlzKS.png",
-          "transform": { "x": 70, "y": 0, "scale": 0.5 }
-        },
-        {
-          "id": "social_disruption",
-          "name": "Social Disruption",
-          "story_or_reference": "Beaver Trickster",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/M6Ij86U.png",
-          "transform": { "x": 0, "y": 10, "scale": 0.5 }
-        }
-      ],
-      "accessory": [
-        {
-          "id": "inflated_status",
-          "name": "Inflation of Social Status",
-          "story_or_reference": "Jewelry",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/h3YYM30.png",
-          "transform": { "x": 53, "y": 20, "scale": 0.16 }
-        },
-        {
-          "id": "liminality",
-          "name": "Liminality",
-          "story_or_reference": "Backpack",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/PfpOJta.png",
-          "transform": { "x": -50, "y": 105, "scale": 0.4 }
-        },
-        {
-          "id": "literalism",
-          "name": "Literalism",
-          "story_or_reference": "Building Communism",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/S1TQ7cC.png",
-          "transform": { "x": -50, "y": 93, "scale": 0.3 }
-        },
-        {
-          "id": "laughter",
-          "name": "Laughter",
-          "story_or_reference": "Clown Nose",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/DQ96yt0.png",
-          "transform": { "x": -2, "y": -110, "scale": 0.2 }
-        },
-        {
-          "id": "quick_tongue",
-          "name": "Quick Tongue",
-          "story_or_reference": "Speech Bubble",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/hN04UnV.png",
-          "transform": { "x": 80, "y": -120, "scale": 0.4 }
-        },
-        {
-          "id": "scheme",
-          "name": "Scheme",
-          "story_or_reference": "Chess Knight",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/GSowDvV.png",
-          "transform": { "x": -55, "y": 75, "scale": 0.2 }
-        }
-      ]
-    },
-    "powerful": {
-      "head": [
-        {
-          "id": "money",
-          "name": "Money",
-          "story_or_reference": "Capital Power",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/R0ndG4g.png",
-          "transform": { "x": 0, "y": -120, "scale": 0.2 }
-        },
-        {
-          "id": "social_status",
-          "name": "Social Status",
-          "story_or_reference": "Crown",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/VZoiOtz.png",
-          "transform": { "x": 0, "y": -160, "scale": 0.4 }
-        },
-        {
-          "id": "magic",
-          "name": "Magic",
-          "story_or_reference": "Eh-Ack",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/uhlZ7z0.png",
-          "transform": { "x": 0, "y": -130, "scale": 0.45 }
-        }
-      ],
-      "body": [
-        {
-          "id": "shapeshifting_power",
-          "name": "Shapeshifting",
-          "story_or_reference": "Eh-Ack",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/eKnSjIj.png",
-          "transform": { "x": 0, "y": -10, "scale": 0.5 }
-        },
-        {
-          "id": "quests",
-          "name": "Quests",
-          "story_or_reference": "Heroic Trials",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/fz7azeM.png",
-          "transform": { "x": 0, "y": 12, "scale": 0.5 }
-        },
-        {
-          "id": "media_presence",
-          "name": "Media Presence",
-          "story_or_reference": "Suit",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/j77hWkO.png",
-          "transform": { "x": 0, "y": 10, "scale": 0.68 }
-        },
-        {
-          "id": "violence",
-          "name": "Violence",
-          "story_or_reference": "Benya Krik",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/GSJGzum.png",
-          "transform": { "x": 2, "y": 40, "scale": 0.29 }
-        }
-      ],
-      "accessory": [
-        {
-          "id": "delegation",
-          "name": "Delegation",
-          "story_or_reference": "Geese-Swans",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/t4iXBwA.png",
-          "transform": { "x": -90, "y": 120, "scale": 0.4 }
-        },
-        {
-          "id": "rules_laws",
-          "name": "Rules & Laws",
-          "story_or_reference": "Scroll",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/EOzdWTI.png",
-          "transform": { "x": -54, "y": 90, "scale": 0.3 }
-        },
-        {
-          "id": "persuasion",
-          "name": "Persuasion",
-          "story_or_reference": "Speech",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/ob3S4Od.png",
-          "transform": { "x": 80, "y": -130, "scale": 0.35 }
-        },
-        {
-          "id": "technology",
-          "name": "Technology",
-          "story_or_reference": "Eye Machine",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/Nwrphb8.png",
-          "transform": { "x": -54, "y": 90, "scale": 0.5 }
-        },
-        {
-          "id": "object_manipulation",
-          "name": "Object Manipulation",
-          "story_or_reference": "Tiny Ship",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/sFGaKXn.png",
-          "transform": { "x": -54, "y": 90, "scale": 0.4 }
-        },
-        {
-          "id": "liminality",
-          "name": "Liminality",
-          "story_or_reference": "Double-Edged Key",
-"description": "PLACEHOLDER",
-          "image": "https://i.imgur.com/5zcGCY7.png",
-          "transform": { "x": -54, "y": 60, "scale": 0.2 }
-        }
-      ]
-    }
+  "powerless": {
+    "head": [
+      {
+        "id": "seductive_trickstar",
+        "name": "Seductive Trickstar",
+        "story_or_reference": "Maria I and Maria II from Daisies",
+        "description": "Uses charm and desire as a tactical interface: by appearing desirable, compliant, or harmless, the seducer redirects others' choices so they act in her interest while believing they act freely. Its power lies in converting patriarchal social expectations and emotional vulnerability into leverage, making influence feel like consent rather than coercion (Jurich).",
+        "image": "https://i.imgur.com/yiwNT6p.png",
+        "transform": { "x": 0, "y": -115, "scale": 0.4 }
+      },
+      {
+        "id": "nonseductive_trickstar",
+        "name": "Nonseductive Trickstar",
+        "story_or_reference": "Shapoklyak",
+        "description": "Rejects desirability, decorum, and normative femininity altogether, operating outside patriarchal scripts that regulate behavior through attractiveness, respectability, or shame. Its power lies in becoming socially ungovernable: by refusing to \"perform correctly,\" the trickster gains freedom to transgress, prank, and manipulate without owing coherence, likability, or moral justification (Jurich).",
+        "image": "https://i.imgur.com/nLlt7gX.png",
+        "transform": { "x": 0, "y": -155, "scale": 0.4 }
+      },
+      {
+        "id": "jester",
+        "name": "Jester",
+        "story_or_reference": "Court Jester",
+        "description": "Occupies a sanctioned role of licensed misrule, using humor, exaggeration, and absurd performance to speak truths that would be dangerous or forbidden from any other position. Its power lies in institutionalized immunity.",
+        "image": "https://i.imgur.com/SkRwSRz.png",
+        "transform": { "x": 3, "y": -170, "scale": 0.4 }
+      },
+      {
+        "id": "picaro",
+        "name": "Picaro",
+        "story_or_reference": "Ostap Bender",
+        "description": "Survives by mobility, improvisation, and clever deception, moving episodically through social systems without loyalty to institutions, morality, or long-term plans. Its power lies in structural illegibility.",
+        "image": "https://i.imgur.com/gz4AkUK.png",
+        "transform": { "x": 0, "y": -133, "scale": 0.37 }
+      },
+      {
+        "id": "simpleton",
+        "name": "Simpleton",
+        "story_or_reference": "Forrest Gump",
+        "description": "Performs innocent \"not-understanding\" as a protective stance, creating a zone where seriousness, logic, and direct accountability lose their force.",
+        "image": "https://i.imgur.com/taspFTB.png",
+        "transform": { "x": 0, "y": -118, "scale": 0.2 }
+      },
+      {
+        "id": "holy_fool",
+        "name": "Holy Fool",
+        "story_or_reference": "Ksenia of St. Petersburg",
+        "description": "Performs radical humility, madness, and self-abasement as a spiritual technique, deliberately violating social norms in order to speak moral truth without worldly authority.",
+        "image": "https://i.imgur.com/VCFh2f6.png",
+        "transform": { "x": 0, "y": -180, "scale": 0.3 }
+      }
+    ],
+    "body": [
+      {
+        "id": "performativity",
+        "name": "Performativity",
+        "story_or_reference": "Troubadour",
+        "description": "Stages deception, critique, or persuasion as spectacle, using song, humor, costume, and gesture so meaning is carried by performance rather than literal statement.",
+        "image": "https://i.imgur.com/Oho4sYn.png",
+        "transform": { "x": 0, "y": 10, "scale": 0.6 }
+      },
+      {
+        "id": "chaotic_pranks",
+        "name": "Chaotic Pranks",
+        "story_or_reference": "Karlsson",
+        "description": "Creates disruption through impulsive, exaggerated action—pranks that escalate, spill over, and often backfire.",
+        "image": "https://i.imgur.com/VLcSN7x.png",
+        "transform": { "x": 0, "y": -10, "scale": 0.5 }
+      },
+      {
+        "id": "shapeshifting_fox",
+        "name": "Shapeshifting",
+        "story_or_reference": "Kitsune",
+        "description": "Alters form, role, or identity fluidly to evade capture, confuse opponents, and exploit shifting situations, treating the self as a mutable tool rather than a fixed essence. Its power lies in radical non-identity: by crossing bodily, social, and symbolic boundaries, the trickster resists classification and control, making order unstable and perception unreliable.",
+        "image": "https://i.imgur.com/jFKlzKS.png",
+        "transform": { "x": 70, "y": 0, "scale": 0.5 }
+      },
+      {
+        "id": "social_disruption",
+        "name": "Social Disruption",
+        "story_or_reference": "Gennady Snegirev",
+        "description": "Introduces an intrusive, unavoidable disturbance into shared social space, forcing institutions and communities to reorganize themselves around an absurd problem that cannot be ignored or privately contained. Its power lies in systemic exposure: by contaminating everyday routines rather than confronting authority directly, social disruption reveals the fragility of order, decorum, and bureaucratic control when faced with material, persistent interference.",
+        "image": "https://i.imgur.com/M6Ij86U.png",
+        "transform": { "x": 0, "y": 10, "scale": 0.5 }
+      }
+    ],
+    "accessory": [
+      {
+        "id": "inflated_status",
+        "name": "Inflation of Social Status",
+        "story_or_reference": "Anna Delvey",
+        "description": "Performs exaggerated wealth, confidence, and exclusivity to fabricate status before it is actually earned or verified, compelling others to treat the trickster as legitimate. Its power lies in social hesitation: most people defer to apparent status to avoid embarrassment or exclusion, allowing performed prestige to function as real authority for as long as it goes unchallenged.",
+        "image": "https://i.imgur.com/h3YYM30.png",
+        "transform": { "x": 53, "y": 20, "scale": 0.16 }
+      },
+      {
+        "id": "liminality",
+        "name": "Liminality",
+        "story_or_reference": "Khodja Nasreddin",
+        "description": "Allows the trickster to live and operate on the margins of systems, carrying everything necessary to remain mobile, unattached, and ready to cross social, spatial, or moral boundaries. Its power lies in permanent in-betweenness: by belonging nowhere fully, the trickster avoids capture by rules, identities, and obligations, turning border existence itself into freedom and tactical advantage.",
+        "image": "https://i.imgur.com/PfpOJta.png",
+        "transform": { "x": -50, "y": 105, "scale": 0.4 }
+      },
+      {
+        "id": "literalism",
+        "name": "Literalism",
+        "story_or_reference": "Doubting Makar",
+        "description": "Affirms rules, slogans, or commands exactly as stated, following them so precisely that their hidden contradictions, absurdities, or violences are forced into visibility. Its power lies in over-identification: by refusing irony, critique, or distance, literalism turns obedience itself into a weapon, making systems expose what they actually mean rather than what they claim to mean.",
+        "image": "https://i.imgur.com/S1TQ7cC.png",
+        "transform": { "x": -50, "y": 93, "scale": 0.3 }
+      },
+      {
+        "id": "laughter",
+        "name": "Laughter",
+        "story_or_reference": "Joker",
+        "description": "Destabilizes authority and fixed meaning through collective, bodily laughter that flattens hierarchies, dissolves fear, and suspends seriousness without direct confrontation. Its power lies in carnivalesque inversion: laughter creates a shared space where official truths lose gravity, allowing critique and renewal to pass as joy rather than dissent.",
+        "image": "https://i.imgur.com/DQ96yt0.png",
+        "transform": { "x": -2, "y": -110, "scale": 0.2 }
+      },
+      {
+        "id": "quick_tongue",
+        "name": "Quick Tongue",
+        "story_or_reference": "Young Man from 'Wow! Speaking Fish!'",
+        "description": "Outruns opponents through fast improvisation—puns, reversals, feigned agreement, and rapid reframing that turns a threat or demand into a new story the other side must follow. Its power lies in linguistic agility: by making meaning slippery in real time, the trickster controls the interaction's frame, forcing stronger actors to react inside a shifting narrative they can't fully pin down.",
+        "image": "https://i.imgur.com/hN04UnV.png",
+        "transform": { "x": 80, "y": -120, "scale": 0.4 }
+      },
+      {
+        "id": "scheme",
+        "name": "Scheme",
+        "story_or_reference": "Ostap Bender",
+        "description": "Plans indirect, multi-move combinations, advancing through detours, feints, and positional advantage rather than frontal confrontation. Its power lies in combinatorial intelligence: by reading social reality as a sequence of exploitable moves, the trickster assembles long schemes through timing, loopholes, and human predictability rather than force.",
+        "image": "https://i.imgur.com/GSowDvV.png",
+        "transform": { "x": -55, "y": 75, "scale": 0.2 }
+      }
+    ]
+  },
+  "powerful": {
+    "head": [
+      {
+        "id": "money",
+        "name": "Money",
+        "story_or_reference": "Koreiko",
+        "description": "Buys compliance, convenience, and protection, letting a trickster in power solve problems through payment instead of persuasion or force. Its power is conditional: money becomes truly effective when it is recognized as legitimate—backed by status, networks, or institutions that can turn cash into access, silence, and loyalty.",
+        "image": "https://i.imgur.com/R0ndG4g.png",
+        "transform": { "x": 0, "y": -120, "scale": 0.2 }
+      },
+      {
+        "id": "social_status",
+        "name": "Social Status",
+        "story_or_reference": "Thomas Wayne",
+        "description": "Carries established prestige, reputation, and institutional legitimacy that grant the trickster in power immediate deference, visibility, and structural influence. Its power lies in recognition: high status makes others take the trickster's words, actions, and claims seriously, turning inherited wealth, elite position, and public respect into leverage.",
+        "image": "https://i.imgur.com/VZoiOtz.png",
+        "transform": { "x": 0, "y": -160, "scale": 0.4 }
+      },
+      {
+        "id": "magic",
+        "name": "Magic",
+        "story_or_reference": "Eh-Ack",
+        "description": "Provides abilities that exceed ordinary human limits, allowing the trickster in power to act in ways others cannot replicate through skill, status, or resources alone. Its power lies in exceptionality: when someone can do what humans normally cannot, they are treated as a different category of actor, placing them beyond standard expectations, comparisons, and forms of accountability.",
+        "image": "https://i.imgur.com/uhlZ7z0.png",
+        "transform": { "x": 0, "y": -130, "scale": 0.45 }
+      }
+    ],
+    "body": [
+      {
+        "id": "shapeshifting_power",
+        "name": "Shapeshifting",
+        "story_or_reference": "Eh-Ack",
+        "description": "Allows the trickster in power to switch roles, identities, and moral positions fluidly—appearing as ruler, benefactor, victim, reformer, or neutral arbiter depending on context. Its power lies in elite mutability: unlike marginal tricksters who shift to survive, the powerful shapeshifter uses non-fixed identity to avoid accountability, absorb contradictions, and remain legitimate across changing regimes and expectations.",
+        "image": "https://i.imgur.com/eKnSjIj.png",
+        "transform": { "x": 0, "y": -10, "scale": 0.5 }
+      },
+      {
+        "id": "quests",
+        "name": "Quests",
+        "story_or_reference": "Baba-Yaga",
+        "description": "Sets tests and impossible tasks that force the hero to prove worth, trade resources, and learn the hidden rules of the world, while the quest-giver keeps control of what counts as success. Its power lies in conditional help: like Baba Yaga, the trickster turns danger into a contract (\"do this, then you may pass\"), using trials to reshape the hero and extract obedience, knowledge, or payment without open coercion.",
+        "image": "https://i.imgur.com/fz7azeM.png",
+        "transform": { "x": 0, "y": 12, "scale": 0.5 }
+      },
+      {
+        "id": "media_presence",
+        "name": "Media Presence",
+        "story_or_reference": "Thomas Wayne",
+        "description": "Uses visibility, public attention, and curated narratives to shape perception, influence opinions, and maintain authority in the public eye. Its power lies in control over image: by managing what is seen and heard, the trickster in power can present a preferred version of reality, manipulate public sentiment, and avoid scrutiny, all while maintaining a facade of transparency and legitimacy.",
+        "image": "https://i.imgur.com/j77hWkO.png",
+        "transform": { "x": 0, "y": 10, "scale": 0.68 }
+      },
+      {
+        "id": "violence",
+        "name": "Violence",
+        "story_or_reference": "Benya Krik",
+        "description": "Uses the credible threat of force to make others comply quickly, cutting through debate, rules, and negotiation by raising the cost of refusal. Its power lies in asymmetry: like Benya Krik, violence (or the promise of it) builds authority through fear and reputation.",
+        "image": "https://i.imgur.com/GSJGzum.png",
+        "transform": { "x": 2, "y": 40, "scale": 0.29 }
+      }
+    ],
+    "accessory": [
+      {
+        "id": "delegation",
+        "name": "Delegation",
+        "story_or_reference": "Geese-Swans from Baba Yaga",
+        "description": "Shifts action onto intermediaries, sending others to carry out tasks, enforce rules, or deliver consequences while the trickster remains distant from the outcome. Its power lies in distance: by acting through others, the trickster extends the control area without direct exposure to blame or resistance.",
+        "image": "https://i.imgur.com/t4iXBwA.png",
+        "transform": { "x": -90, "y": 120, "scale": 0.4 }
+      },
+      {
+        "id": "rules_laws",
+        "name": "Rules & Laws",
+        "story_or_reference": "Jaroslav Hašek",
+        "description": "Uses formal rules, procedures, and legality to control outcomes, restrict options, and force compliance without appearing arbitrary or violent. Its power lies in legitimacy: by acting \"according to the rules,\" the trickster in power makes domination look neutral, inevitable, and beyond personal responsibility.",
+        "image": "https://i.imgur.com/EOzdWTI.png",
+        "transform": { "x": -54, "y": 90, "scale": 0.3 }
+      },
+      {
+        "id": "persuasion",
+        "name": "Persuasion",
+        "story_or_reference": "Thomas Wayne",
+        "description": "Shapes beliefs and choices through framing, rhetoric, and emotional appeal, guiding others to act willingly rather than through force or rules. Its power lies in consent: by making outcomes feel reasonable and self-chosen, the trickster in power controls behavior while avoiding resistance or blame.",
+        "image": "https://i.imgur.com/ob3S4Od.png",
+        "transform": { "x": 80, "y": -130, "scale": 0.35 }
+      },
+      {
+        "id": "technology",
+        "name": "Technology",
+        "story_or_reference": "Detective from 'The Bremen Town Musicians'",
+        "description": "Uses tools and devices to amplify perception, create illusions, or control what others can see and know, turning tricks into repeatable techniques instead of one-time improvisations. Its power lies in leverage: technology extends reach and precision, letting the trickster influence outcomes at a distance while making manipulation look \"objective\" or mechanical.",
+        "image": "https://i.imgur.com/Nwrphb8.png",
+        "transform": { "x": -54, "y": 90, "scale": 0.5 }
+      },
+      {
+        "id": "object_manipulation",
+        "name": "Object Manipulation",
+        "story_or_reference": "The King from 'In the Blue Sea, White Foam'",
+        "description": "Directly alters the physical state of objects to produce outcomes others cannot achieve through normal human action. Its power lies in material authority: by controlling objects themselves rather than opinions or rules, the trickster in power bypasses debate and resistance, making change immediate, concrete, and difficult to contest.",
+        "image": "https://i.imgur.com/sFGaKXn.png",
+        "transform": { "x": -54, "y": 90, "scale": 0.4 }
+      },
+      {
+        "id": "liminality",
+        "name": "Liminality",
+        "story_or_reference": "The King from 'In the Blue Sea, White Foam'",
+        "description": "Lives on borders – between worlds – never fully belonging anywhere, so ordinary expectations and obligations don't apply. Its power lies in being unplaceable: by staying \"in-between,\" the trickster gains freedom to cross boundaries, avoid capture, and act where others have no permission or map.",
+        "image": "https://i.imgur.com/5zcGCY7.png",
+        "transform": { "x": -54, "y": 60, "scale": 0.2 }
+      }
+    ]
   }
-  
+}
