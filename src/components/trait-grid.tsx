@@ -27,11 +27,11 @@ function TraitGridComponent({
           {category}
         </h3>
       </div>
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-2.5 md:grid-cols-2 lg:grid-cols-3">
         {traits.map((trait) => {
           const isSelected = trait.id === selectedId;
           const baseClasses =
-          "group flex flex-col items-center gap-1 rounded-lg bg-white p-1.5 text-center transition border-2";
+          "group flex flex-col items-center gap-1 rounded-lg bg-white p-2 text-center transition border-2";
           return (
             <button
               key={trait.id}
@@ -52,7 +52,7 @@ function TraitGridComponent({
               }}
               type="button"
             >
-              <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded">
+              <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded">
                 <img
                   src={trait.image}
                   alt={trait.name}
@@ -64,7 +64,7 @@ function TraitGridComponent({
                 />
               </div>
               <div className="flex flex-col gap-0.5">
-                <span className="text-[9px] font-semibold" style={{ color: '#756550', fontFamily: 'var(--font-russo-one)' }}>
+                <span className="text-[9.5px] font-semibold" style={{ color: '#756550', fontFamily: 'var(--font-russo-one)' }}>
                   {trait.name}
                 </span>
               </div>

@@ -22,18 +22,18 @@ export function TraitMenu({
 }: TraitMenuProps) {
   return (
     <aside
-      className="flex h-full flex-col gap-4 rounded-2xl border-[4px] bg-[#beebe0] p-3"
+      className="flex max-h-[900] flex-col gap-3 rounded-2xl border-[4px] bg-[#beebe0] p-2.5 sm:p-3"
       style={{ borderColor: '#a2e2da' }}
       onMouseLeave={() => onHover?.(null)}
     >
       <header className="flex items-center justify-between">
         <div className="flex flex-col">
-          <h2 className="text-lg font-semibold text-slate-900" style={{ fontFamily: 'var(--font-varela-round)' }}>
+          <h2 className="text-base sm:text-lg font-semibold text-slate-900" style={{ fontFamily: 'var(--font-varela-round)' }}>
             {side === "powerless" ? "Traits of the Powerless" : "Traits of the Powerful"}
           </h2>
         </div>
       </header>
-      <div className="flex flex-col gap-6 overflow-y-auto pr-1">
+      <div className="flex flex-col gap-4 overflow-y-auto pr-1">
         {categories.map((category) => (
           <TraitGrid
             key={category}

@@ -20,14 +20,14 @@
 }
 
 body {
-  background: #c2cdf1;
+  background-color: #c2cdf1;
   color: var(--foreground);
   font-family: var(--font-varela-round), Arial, Helvetica, sans-serif;
   cursor: none;
 }
 
 .scalloped-banner {
-  background-color: #fcf6de;
+  background-color: #fcf6de !important;
   position: relative;
   padding: 1.25rem 1.5rem;
   padding-bottom: 0;
@@ -35,6 +35,7 @@ body {
   margin-bottom: 45px;
   width: 100%;
   overflow: visible;
+  min-height: 120px;
 }
 
 .scalloped-edge {

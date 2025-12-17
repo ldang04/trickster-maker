@@ -36,7 +36,7 @@ type BattleLogEntry = {
 
 const initialBattleState: BattleState = {
   turn: 1,
-  maxTurns: 20,
+  maxTurns: 8,
   momentum: { powerless: 0, powerful: 0 },
   credibility: { powerless: 3, powerful: 3 },
   crowd: { powerless: 0, powerful: 0 },
@@ -260,26 +260,6 @@ export default function Home() {
     if (trait) setActiveTrait(trait);
   };
 
-  const renderSelectedList = (traits: {
-    head: Trait | null;
-    body: Trait | null;
-    accessory: Trait | null;
-  }) => {
-    const picked = categories
-      .map((c) => traits[c])
-      .filter((t): t is Trait => Boolean(t));
-
-    if (!picked.length) return null;
-
-    return (
-      <ul className="list-disc space-y-1 pl-4 pr-2 text-sm" style={{ color: '#756550', fontFamily: 'var(--font-varela-round)' }}>
-        {picked.map((trait) => (
-          <li key={trait.id}>{trait.name}</li>
-        ))}
-      </ul>
-    );
-  };
-
   return (
     <main className="flex min-h-screen flex-col bg-transparent text-slate-900" style={{ cursor: "none" }}>
       <PixelCursor />
@@ -288,15 +268,24 @@ export default function Home() {
           <div className="scalloped-edge"></div>
           <div className="mx-auto max-w-5xl px-6 pt-5 md:px-10 md:pt-6 pb-10">
             <header className="flex flex-col items-center gap-3 text-center">
-       
             <h1
               className="text-3xl font-bold sm:text-5xl"
-              style={{ fontFamily: "var(--font-russo-one)", color: '#756550' }}
+              style={{ fontFamily: "var(--font-russo-one)", color: "#756550" }}
             >
               Trickster Battle Builder
             </h1>
-            <p className="max-w-3xl text-sm" style={{ color: '#756550', fontFamily: 'var(--font-varela-round)' }}>
-              This project simulates trickster dynamics across unequal power positions, pitting a powerless trickster against a trickster <i>in power</i>. We were inspired by the characters and stories explored in our Tricksters in World Culture course. <br /> Read our rationale and game interpretation {" "}
+            <p
+              className="max-w-3xl text-sm"
+              style={{
+                color: "#756550",
+                fontFamily: "var(--font-varela-round)",
+              }}
+            >
+              This project simulates trickster dynamics across unequal power
+              positions, pitting a powerless trickster against a trickster{" "}
+              <i>in power</i>. We were inspired by the characters and stories
+              explored in our Tricksters in World Culture course. <br /> Read
+              our rationale and game interpretation{" "}
               <a
                 href="https://docs.google.com/document/d/e/2PACX-1vSt85h3GQmbFCk-iSfjKDl0WJJGGCldVhN4qAKmkyAY1iM7VkCDDSOgUpelZSd-xs70V8y5xZIlL2pQ/pub"
                 target="_blank"
@@ -311,22 +300,20 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mx-auto flex w-full max-w-[100vw] flex-col gap-6 px-3 pb-10 md:px-6">
-          <div className="flex w-full flex-col items-stretch justify-center gap-6 overflow-x-auto lg:flex-row">
-          {!battleState && (
-            <div className="w-full shrink-0 lg:w-[240px] xl:w-[280px]">
-              <TraitMenu
-                side="powerless"
-                traitsByCategory={features.powerless}
-                selections={selections}
-                onSelect={handleSelect}
-                onHover={setHoverTrait}
-              />
-            </div>
-          )}
+        <div className="mx-auto flex w-full max-w-[100vw] flex-col gap-4 px-2 pb-8 md:px-4">
+          <div className="flex w-full flex-col items-stretch justify-center gap-4 overflow-x-auto lg:flex-row">
+          <div className="w-full shrink-0 lg:w-[240px] xl:w-[260px]">
+            <TraitMenu
+              side="powerless"
+              traitsByCategory={features.powerless}
+              selections={selections}
+              onSelect={handleSelect}
+              onHover={setHoverTrait}
+            />
+          </div>
 
-            <div className="flex w-full flex-col items-center justify-start gap-6 rounded-2xl border-[4px] bg-[#f9f5b5] p-4 sm:p-5 md:max-w-[640px] lg:flex-[1.02] lg:max-w-[760px]" style={{ borderColor: '#fcdf8d' }}>
-            <div className="flex w-full flex-col items-center justify-center gap-6 overflow-x-auto px-2 sm:flex-row sm:gap-8 xl:gap-10">
+            <div className="flex w-full flex-col items-center justify-start gap-4 rounded-2xl border-[4px] bg-[#f9f5b5] p-3 sm:p-4 md:max-w-[560px] lg:flex-[0.9] lg:max-w-[680px]" style={{ borderColor: '#fcdf8d' }}>
+            <div className="flex w-full flex-col items-center justify-center gap-4 overflow-x-auto px-1 sm:flex-row sm:gap-6 xl:gap-8">
               <div className="flex flex-col items-center">
                 <CharacterCanvas
                   label="Powerless Trickster"
@@ -346,81 +333,47 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="w-full rounded-xl border-[4px] bg-white/70 px-4 py-3 text-center" style={{ borderColor: '#fcdf8d' }}>
-              {hoverTrait ?? activeTrait ? (
-                <div className="flex flex-col gap-1 text-sm" style={{ color: '#756550' }}>
-                  <div className="text-lg font-semibold" style={{ fontFamily: 'var(--font-russo-one)' }}>
-                    {(hoverTrait ?? activeTrait)!.name}
-                  </div>
-                  <div className="text-xs font-medium" style={{ fontFamily: 'var(--font-varela-round)' }}>
-                    Trickster reference:{" "}
-                    {(hoverTrait ?? activeTrait)!.story_or_reference ?? "—"}
-                  </div>
-                  <div className="text-sm" style={{ fontFamily: 'var(--font-varela-round)' }}>
-                    {(hoverTrait ?? activeTrait)!.description}
-                  </div>
-                </div>
-              ) : (
-                <div className="text-2xl font-bold" style={{ color: '#756550', fontFamily: 'var(--font-russo-one)' }}>
-                  Assemble your tricksters
-                </div>
-              )}
-            </div>
-            <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="flex flex-col items-center">
-                {renderSelectedList(selectedTraits.powerless)}
-              </div>
-              <div className="flex flex-col items-center">
-                {renderSelectedList(selectedTraits.powerful)}
-              </div>
-            </div>
-
-            <div className="mt-2 w-full rounded-xl border-[4px] bg-white/80 p-3 space-y-3" style={{ borderColor: '#fcdf8d' }}>
-              <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="mt-0.5 w-full p-2 space-y-2">
+              <div className="flex flex-col items-center gap-2">
                 <div className="flex items-center gap-3">
                   <button
                     onClick={startBattle}
-                    disabled={!hasCompleteBuild("powerless") || !hasCompleteBuild("powerful")}
-                    className="rounded-full px-3 py-1 text-xs font-semibold text-white shadow-sm disabled:opacity-40"
+                    disabled={
+                      !hasCompleteBuild("powerless") || !hasCompleteBuild("powerful")
+                    }
+                    className="rounded-full px-5 py-2 text-sm font-semibold text-white shadow-sm disabled:opacity-40"
                     style={{
-                      fontFamily: 'var(--font-russo-one)',
+                      fontFamily: "var(--font-russo-one)",
                       backgroundColor:
                         !hasCompleteBuild("powerless") || !hasCompleteBuild("powerful")
-                          ? '#d1d5db'
-                          : '#f6b25b',
+                          ? "#d1d5db"
+                          : "#f6b25b",
                     }}
                   >
                     Start Battle
                   </button>
-                  <label
-                    className="flex items-center gap-1 text-[11px]"
-                    style={{ fontFamily: 'var(--font-varela-round)', color: '#756550' }}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={autoRun}
-                      onChange={(e) => setAutoRun(e.target.checked)}
-                      disabled={!battleState || !!winner}
-                    />
-                    Auto-run
-                  </label>
-                  {(!hasCompleteBuild("powerless") || !hasCompleteBuild("powerful")) && (
-                    <span
-                      className="text-[11px]"
-                      style={{ fontFamily: 'var(--font-varela-round)', color: '#756550' }}
-                    >
-                      Choose head, body, and accessory for both tricksters to begin.
-                    </span>
-                  )}
                 </div>
+                {(!hasCompleteBuild("powerless") ||
+                  !hasCompleteBuild("powerful")) && (
+                  <span
+                    className="text-[11px] text-center"
+                    style={{
+                      fontFamily: "var(--font-varela-round)",
+                      color: "#756550",
+                    }}
+                  >
+                    Choose head, body, and accessory for both tricksters to
+                    begin.
+                  </span>
+                )}
                 {battleState && (
                   <div
-                    className="flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold"
+                    className="mt-1 flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold"
                     style={{
-                      fontFamily: 'var(--font-varela-round)',
-                      color: '#ffffff',
+                      fontFamily: "var(--font-varela-round)",
+                      color: "#ffffff",
                       backgroundColor:
-                        battleState.turn % 2 === 0 ? '#3b82f6' : '#ef4444',
+                        battleState.turn % 2 === 0 ? "#3b82f6" : "#ef4444",
                     }}
                   >
                     <span>
@@ -428,133 +381,138 @@ export default function Home() {
                     </span>
                     <span>
                       {battleState.turn % 2 === 0
-                        ? 'Powerless trickster turn'
-                        : 'Trickster in power turn'}
+                        ? "Powerless trickster turn"
+                        : "Trickster in power turn"}
                     </span>
                   </div>
                 )}
               </div>
+            </div>
 
-              {battleState && (
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 text-xs" style={{ fontFamily: 'var(--font-varela-round)', color: '#756550' }}>
-                  {(["powerless", "powerful"] as Side[]).map((side) => (
-                    <div key={side} className="space-y-1 rounded-lg bg-[#fdf8d8] p-2">
-                      <div className="text-[11px] font-semibold uppercase tracking-wide">
-                        {side === "powerless" ? "Powerless Trickster" : "Trickster in Power"}
-                        {winner &&
-                          (winner === side
-                            ? " — Winner"
-                            : winner === "draw"
-                              ? " — Draw"
-                              : "")}
+            <div className="mt-0.5 w-full rounded-xl bg-white/70 px-4 py-3">
+              {battleState ? (
+                <div className="space-y-2" style={{ fontFamily: "var(--font-varela-round)", color: "#756550" }}>
+                  <div className="text-xs font-semibold uppercase tracking-wide mb-1 text-center">
+                    Battle log
+                  </div>
+                  <div className="text-[11px] mb-1 text-center">
+                    Press the space bar to reveal the next move, or enable Auto-run to let the battle play out automatically.
+                  </div>
+                  <div
+                    className={`rounded-lg p-2 ${
+                      winner === "draw"
+                        ? "bg-blue-50"
+                        : winner
+                        ? "bg-green-50"
+                        : "bg-[#fdf8d8]"
+                    }`}
+                  >
+                    {battleLog.length === 0 ? (
+                      <div className="text-xs italic">
+                        Press space bar for first move.
                       </div>
-                      <div>Credibility: {battleState.credibility[side]} / 5</div>
-                      <div>Crowd: {battleState.crowd[side]}</div>
-                      <div>Momentum: {battleState.momentum[side]}</div>
-                      <div className="flex flex-wrap gap-1">
-                        {battleState.constraints[side].length ? (
-                          battleState.constraints[side].map((c) => (
-                            <span
-                              key={c}
-                              className="rounded-full bg-[#f6b25b]/20 px-2 py-[1px] text-[10px] font-semibold"
+                    ) : (
+                      <ul className="space-y-2 text-xs bg-white rounded p-2">
+                        {battleLog.map((entry, index) => {
+                          const isPowerless = entry.attacker === "powerless";
+                          return (
+                            <li
+                              key={`${index}-${entry.turn}-${entry.attacker}-${entry.move}-${entry.success}`}
+                              className={`flex ${isPowerless ? "justify-start" : "justify-end"}`}
                             >
-                              {c}
-                            </span>
-                          ))
-                        ) : (
-                          <span className="text-[10px] italic text-slate-500">
-                            No constraints
-                          </span>
-                        )}
+                              <div
+                                className={`max-w-[80%] rounded-2xl px-3 py-2 shadow-sm ${
+                                  isPowerless
+                                    ? "bg-[#dbeafe] text-[#1d4ed8]"
+                                    : "bg-[#fee2e2] text-[#b91c1c]"
+                                }`}
+                              >
+                                <div className="mb-1 text-[10px] font-semibold">
+                                  Turn {entry.turn} ·{" "}
+                                  {isPowerless ? "Powerless trickster" : "Trickster in power"} ·{" "}
+                                  {entry.move} {entry.success ? "✓" : "✕"}
+                                </div>
+                                <div className="mb-1 text-[11px]">
+                                  {entry.actionLine}
+                                </div>
+                                <div className="text-[10px] opacity-80">
+                                  {entry.effectLine}
+                                </div>
+                              </div>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </div>
+                  {victoryText && (
+                    <div
+                      className={`mt-2 rounded-lg p-2 text-[11px] ${
+                        winner === "draw"
+                          ? "bg-blue-100"
+                          : winner
+                          ? "bg-green-100"
+                          : "bg-white/90"
+                      }`}
+                    >
+                      <div className="mb-1 text-[10px] font-semibold uppercase tracking-wide text-center">
+                        {winner === "draw"
+                          ? "Battle ends in a draw"
+                          : winner === "powerless"
+                          ? "Powerless Trickster wins"
+                          : "Trickster in Power wins"}
                       </div>
+                      <p>{victoryText}</p>
                     </div>
-                  ))}
+                  )}
+                </div>
+              ) : (hoverTrait ?? activeTrait) ? (
+                <div
+                  className="flex flex-col gap-1 text-sm text-center"
+                  style={{ color: "#756550" }}
+                >
+                  <div
+                    className="text-lg font-semibold"
+                    style={{ fontFamily: "var(--font-russo-one)" }}
+                  >
+                    {(hoverTrait ?? activeTrait)!.name}
+                  </div>
+                  <div
+                    className="text-xs font-medium"
+                    style={{ fontFamily: "var(--font-varela-round)" }}
+                  >
+                    Trickster reference:{" "}
+                    {(hoverTrait ?? activeTrait)!.story_or_reference ?? "—"}
+                  </div>
+                  <div
+                    className="text-sm"
+                    style={{ fontFamily: "var(--font-varela-round)" }}
+                  >
+                    {(hoverTrait ?? activeTrait)!.description}
+                  </div>
+                </div>
+              ) : (
+                <div
+                  className="text-2xl font-bold text-center"
+                  style={{
+                    color: "#756550",
+                    fontFamily: "var(--font-russo-one)",
+                  }}
+                >
+                  Assemble your tricksters
                 </div>
               )}
             </div>
           </div>
 
-          <div className="w-full shrink-0 lg:w-[260px] xl:w-[320px]">
-            {!battleState ? (
-              <TraitMenu
-                side="powerful"
-                traitsByCategory={features.powerful}
-                selections={selections}
-                onSelect={handleSelect}
-                onHover={setHoverTrait}
-              />
-            ) : (
-              <div className="battle-log-panel flex h-full flex-col gap-2 rounded-2xl border-[4px] bg-[#f9f5b5] p-3" style={{ borderColor: "#fcdf8d" }}>
-                <div className="text-xs font-semibold uppercase tracking-wide" style={{ fontFamily: "var(--font-varela-round)", color: "#756550" }}>
-                  Battle log
-                </div>
-                <div className="max-h-64 flex-1 overflow-y-auto rounded-lg bg-[#fdf8d8] p-2">
-                  {battleLog.length === 0 ? (
-                    <div
-                      className="text-xs italic"
-                      style={{ fontFamily: "var(--font-varela-round)", color: "#756550" }}
-                    >
-                      Battle log will appear here once you start.
-                    </div>
-                  ) : (
-                    <ul
-                      className="space-y-2 text-xs"
-                      style={{ fontFamily: "var(--font-varela-round)", color: "#756550" }}
-                    >
-                      {battleLog.map((entry, index) => {
-                        const isPowerless = entry.attacker === "powerless";
-                        return (
-                          <li
-                            key={`${index}-${entry.turn}-${entry.attacker}-${entry.move}-${entry.success}`}
-                            className={`flex ${isPowerless ? "justify-start" : "justify-end"}`}
-                          >
-                            <div
-                              className={`max-w-[80%] rounded-2xl px-3 py-2 shadow-sm ${
-                                isPowerless
-                                  ? "bg-[#dbeafe] text-[#1d4ed8]"
-                                  : "bg-[#fee2e2] text-[#b91c1c]"
-                              }`}
-                            >
-                              <div className="mb-1 text-[10px] font-semibold">
-                                Turn {entry.turn} ·{" "}
-                                {isPowerless
-                                  ? "Powerless trickster"
-                                  : "Trickster in power"}{" "}
-                                · {entry.move} {entry.success ? "✓" : "✕"}
-                              </div>
-                              <div className="mb-1 text-[11px]">
-                                {entry.actionLine}
-                              </div>
-                              <div className="text-[10px] opacity-80">
-                                {entry.effectLine}
-                              </div>
-                            </div>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  )}
-                </div>
-                {victoryText && (
-                  <div
-                    className="mt-1 rounded-lg bg-white/90 p-2 text-[11px]"
-                    style={{
-                      fontFamily: "var(--font-varela-round)",
-                      color: "#756550",
-                    }}
-                  >
-                    <div className="mb-1 text-[10px] font-semibold uppercase tracking-wide">
-                      {winner === "draw"
-                        ? "Battle ends in a draw"
-                        : winner === "powerless"
-                        ? "Powerless Trickster wins"
-                        : "Trickster in Power wins"}
-                    </div>
-                    <p>{victoryText}</p>
-                  </div>
-                )}
-              </div>
-            )}
+          <div className="w-full shrink-0 lg:w-[260px] xl:w-[300px]">
+            <TraitMenu
+              side="powerful"
+              traitsByCategory={features.powerful}
+              selections={selections}
+              onSelect={handleSelect}
+              onHover={setHoverTrait}
+            />
           </div>
         </div>
         </div>
