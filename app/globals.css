@@ -78,3 +78,18 @@ body {
   -webkit-mask-position: 0 0;
   mask-position: 0 0;
 }
+
+@keyframes slideInRightBattle {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.battle-log-panel {
+  animation: slideInRightBattle 0.4s ease-out;
+}
