@@ -40,7 +40,7 @@ body {
 
 .scalloped-edge {
   position: absolute;
-  bottom: -45px;
+  bottom: -43px;
   left: 0;
   right: 0;
   width: 100%;
@@ -93,4 +93,65 @@ body {
 
 .battle-log-panel {
   animation: slideInRightBattle 0.4s ease-out;
+}
+
+.typewriter-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter-center 1.5s steps(30, end);
+  font-family: 'Courier New', Courier, monospace;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+@keyframes typewriter-left-to-right {
+  from {
+    clip-path: polygon(0% 0, 0% 0, 0% 100%, 0% 100%);
+  }
+  to {
+    clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-4px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(4px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.bubble-slide-left {
+  animation: slideInFromLeft 0.5s ease-out;
+}
+
+.bubble-slide-right {
+  animation: slideInFromRight 0.5s ease-out;
+}
+
+.effect-line-delayed {
+  display: inline-block;
+  overflow: hidden;
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 100%;
+  margin: 0.75rem auto;
+  animation: typewriter-left-to-right 2s steps(40, end) 1.5s;
+  animation-fill-mode: both;
 }

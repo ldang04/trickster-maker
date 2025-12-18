@@ -196,32 +196,11 @@ export default function Home() {
     if (nextWinner) {
       setWinner(nextWinner);
       setAutoRun(false);
-      const winnerName =
-        nextWinner === "powerless"
-          ? selectedTraits.powerless.head?.name ?? "Powerless Trickster"
-          : nextWinner === "powerful"
-          ? selectedTraits.powerful.head?.name ?? "Powerful Trickster"
-          : undefined;
-      const loserSide =
-        nextWinner === "draw"
-          ? null
-          : nextWinner === "powerless"
-          ? "powerful"
-          : "powerless";
-      const loserName =
-        loserSide === "powerless"
-          ? selectedTraits.powerless.head?.name ?? "Powerless Trickster"
-          : loserSide === "powerful"
-          ? selectedTraits.powerful.head?.name ?? "Powerful Trickster"
-          : undefined;
-
       const v = composeVictoryNarration({
         winner: nextWinner,
         state: stateAfter,
         lastMove: move,
         lastAttacker: attacker,
-        winnerName,
-        loserName,
       });
       setVictoryText(v.text);
     }
@@ -314,7 +293,7 @@ export default function Home() {
 
             <div className="flex w-full flex-col items-center justify-start gap-4 rounded-2xl border-[4px] bg-[#f9f5b5] p-3 sm:p-4 md:max-w-[560px] lg:flex-[0.9] lg:max-w-[680px]" style={{ borderColor: '#fcdf8d' }}>
             <div className="flex w-full flex-col items-center justify-center gap-4 overflow-x-auto px-1 sm:flex-row sm:gap-6 xl:gap-8">
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center w-full sm:w-auto">
                 <CharacterCanvas
                   label="Powerless Trickster"
                   outlineSrc={outlineSrc}
@@ -322,8 +301,34 @@ export default function Home() {
                   onTraitClick={setActiveTrait}
                   onTraitHover={setHoverTrait}
                 />
+                {battleState && (
+                  <div className="mt-2 w-[230px] sm:w-[260px] lg:w-[300px] space-y-1 rounded-lg bg-[#fdf8d8] p-2">
+                    <div className="text-[10px] font-semibold uppercase tracking-wide text-center">
+                      Stats
+                    </div>
+                    <div className="text-[11px]"><span className="font-bold">Credibility:</span> {battleState.credibility.powerless} / 5</div>
+                    <div className="text-[11px]"><span className="font-bold">Crowd:</span> {battleState.crowd.powerless}</div>
+                    <div className="text-[11px]"><span className="font-bold">Momentum:</span> {battleState.momentum.powerless}</div>
+                    <div className="flex flex-wrap gap-1 justify-center">
+                      {battleState.constraints.powerless.length ? (
+                        battleState.constraints.powerless.map((c) => (
+                          <span
+                            key={c}
+                            className="rounded-full bg-[#f6b25b]/20 px-1.5 py-[1px] text-[8px] font-semibold"
+                          >
+                            {c}
+                          </span>
+                        ))
+                      ) : (
+                        <span className="text-[8px] italic text-slate-500">
+                          No constraints
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center w-full sm:w-auto">
                 <CharacterCanvas
                   label="Trickster in Power"
                   outlineSrc={outlineSrc}
@@ -331,82 +336,105 @@ export default function Home() {
                   onTraitClick={setActiveTrait}
                   onTraitHover={setHoverTrait}
                 />
-              </div>
-            </div>
-            <div className="mt-0.5 w-full p-2 space-y-2">
-              <div className="flex flex-col items-center gap-2">
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={startBattle}
-                    disabled={
-                      !hasCompleteBuild("powerless") || !hasCompleteBuild("powerful")
-                    }
-                    className="rounded-full px-5 py-2 text-sm font-semibold text-white shadow-sm disabled:opacity-40"
-                    style={{
-                      fontFamily: "var(--font-russo-one)",
-                      backgroundColor:
-                        !hasCompleteBuild("powerless") || !hasCompleteBuild("powerful")
-                          ? "#d1d5db"
-                          : "#f6b25b",
-                    }}
-                  >
-                    Start Battle
-                  </button>
-                </div>
-                {(!hasCompleteBuild("powerless") ||
-                  !hasCompleteBuild("powerful")) && (
-                  <span
-                    className="text-[11px] text-center"
-                    style={{
-                      fontFamily: "var(--font-varela-round)",
-                      color: "#756550",
-                    }}
-                  >
-                    Choose head, body, and accessory for both tricksters to
-                    begin.
-                  </span>
-                )}
                 {battleState && (
-                  <div
-                    className="mt-1 flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold"
-                    style={{
-                      fontFamily: "var(--font-varela-round)",
-                      color: "#ffffff",
-                      backgroundColor:
-                        battleState.turn % 2 === 0 ? "#3b82f6" : "#ef4444",
-                    }}
-                  >
-                    <span>
-                      Turn {battleState.turn} / {battleState.maxTurns}
-                    </span>
-                    <span>
-                      {battleState.turn % 2 === 0
-                        ? "Powerless trickster turn"
-                        : "Trickster in power turn"}
-                    </span>
+                  <div className="mt-2 w-[230px] sm:w-[260px] lg:w-[300px] space-y-1 rounded-lg bg-[#fdf8d8] p-2">
+                    <div className="text-[10px] font-semibold uppercase tracking-wide text-center">
+                      Stats
+                    </div>
+                    <div className="text-[11px]"><span className="font-bold">Credibility:</span> {battleState.credibility.powerful} / 5</div>
+                    <div className="text-[11px]"><span className="font-bold">Crowd:</span> {battleState.crowd.powerful}</div>
+                    <div className="text-[11px]"><span className="font-bold">Momentum:</span> {battleState.momentum.powerful}</div>
+                    <div className="flex flex-wrap gap-1 justify-center">
+                      {battleState.constraints.powerful.length ? (
+                        battleState.constraints.powerful.map((c) => (
+                          <span
+                            key={c}
+                            className="rounded-full bg-[#f6b25b]/20 px-1.5 py-[1px] text-[8px] font-semibold"
+                          >
+                            {c}
+                          </span>
+                        ))
+                      ) : (
+                        <span className="text-[8px] italic text-slate-500">
+                          No constraints
+                        </span>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
             </div>
+            {!battleState && (
+              <div className="mt-0.5 w-full p-2 space-y-2">
+                <div className="flex flex-col items-center gap-2">
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={startBattle}
+                      disabled={
+                        !hasCompleteBuild("powerless") || !hasCompleteBuild("powerful")
+                      }
+                      className="rounded-full px-5 py-2 text-sm font-semibold text-white shadow-sm disabled:opacity-40"
+                      style={{
+                        fontFamily: "var(--font-russo-one)",
+                        backgroundColor:
+                          !hasCompleteBuild("powerless") || !hasCompleteBuild("powerful")
+                            ? "#d1d5db"
+                            : "#f6b25b",
+                      }}
+                    >
+                      Start Battle
+                    </button>
+                  </div>
+                  {(!hasCompleteBuild("powerless") ||
+                    !hasCompleteBuild("powerful")) && (
+                    <span
+                      className="text-[11px] text-center"
+                      style={{
+                        fontFamily: "var(--font-varela-round)",
+                        color: "#756550",
+                      }}
+                    >
+                      Choose head, body, and accessory for both tricksters to
+                      begin.
+                    </span>
+                  )}
+                </div>
+              </div>
+            )}
 
             <div className="mt-0.5 w-full rounded-xl bg-white/70 px-4 py-3">
               {battleState ? (
                 <div className="space-y-2" style={{ fontFamily: "var(--font-varela-round)", color: "#756550" }}>
-                  <div className="text-xs font-semibold uppercase tracking-wide mb-1 text-center">
-                    Battle log
+                  <div className="flex items-center justify-center gap-2 mb-1">
+                    <div className="text-xs font-semibold uppercase tracking-wide">
+                      Battle log
+                    </div>
+                    {battleState && !winner && battleLog.length > 0 && (
+                      <div
+                        className="flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold"
+                        style={{
+                          fontFamily: "var(--font-varela-round)",
+                          color: "#ffffff",
+                          backgroundColor: "#f6b25b",
+                        }}
+                      >
+                        <span>
+                          Turn {battleState.turn} / {battleState.maxTurns}
+                        </span>
+                      </div>
+                    )}
                   </div>
                   <div
-                    className={`rounded-lg p-2 ${
-                      winner === "draw"
-                        ? "bg-blue-50"
-                        : winner
-                        ? "bg-green-50"
-                        : "bg-[#fdf8d8]"
-                    }`}
+                    className={`rounded-lg`}
                   >
                     {battleLog.length === 0 ? (
-                      <div className="text-lg russo-one text-center" style={{ fontFamily: "var(--font-russo-one)" }}>
-                        Press space bar for trickster moves.
+                      <div className="space-y-3">
+                        <div className="text-center typewriter-text" style={{ fontFamily: "'Courier New', Courier, monospace", fontWeight: 'bold', fontSize: '14px', color: '#756550', whiteSpace: 'normal', wordWrap: 'break-word' }}>
+                          The powerless and powerful trickster face off in front of onlookers. Only the crowd can decide who wins the battle
+                        </div>
+                        <div className="text-center" style={{ fontFamily: "var(--font-russo-one)", fontSize: '16px', color: '#756550' }}>
+                          Press space to get trickster move
+                        </div>
                       </div>
                     ) : (
                       <ul className="space-y-2 text-xs bg-white rounded p-2">
@@ -415,26 +443,28 @@ export default function Home() {
                           return (
                             <li
                               key={`${index}-${entry.turn}-${entry.attacker}-${entry.move}-${entry.success}`}
-                              className={`flex ${isPowerless ? "justify-start" : "justify-end"}`}
+                              className="flex flex-col gap-1"
                             >
-                              <div
-                                className={`max-w-[80%] rounded-2xl px-3 py-2 shadow-sm ${
-                                  isPowerless
-                                    ? "bg-[#dbeafe] text-[#1d4ed8]"
-                                    : "bg-[#fee2e2] text-[#b91c1c]"
-                                }`}
-                              >
-                                <div className="mb-1 text-[10px] font-semibold">
-                                  Turn {entry.turn} ·{" "}
-                                  {isPowerless ? "Powerless trickster" : "Trickster in power"} ·{" "}
-                                  {entry.move} {entry.success ? "✓" : "✕"}
+                              <div className={`flex ${isPowerless ? "justify-start" : "justify-end"}`}>
+                                <div
+                                  className={`max-w-[80%] rounded-2xl px-3 py-2 shadow-sm ${
+                                    isPowerless
+                                      ? "bg-[#dbeafe] text-[#1d4ed8] bubble-slide-left"
+                                      : "bg-[#fee2e2] text-[#b91c1c] bubble-slide-right"
+                                  }`}
+                                >
+                                  <div className="mb-1 text-[10px] font-semibold">
+                                    Turn {entry.turn} ·{" "}
+                                    {isPowerless ? "Powerless trickster" : "Trickster in power"} ·{" "}
+                                    {entry.move} {entry.success ? "✓" : "✕"}
+                                  </div>
+                                  <div className="mb-1 text-[11px]">
+                                    {entry.actionLine}
+                                  </div>
                                 </div>
-                                <div className="mb-1 text-[11px]">
-                                  {entry.actionLine}
-                                </div>
-                                <div className="text-[10px] opacity-80">
-                                  {entry.effectLine}
-                                </div>
+                              </div>
+                              <div className="text-[11px] text-center effect-line-delayed" style={{ fontFamily: "'Courier New', Courier, monospace", fontWeight: 'bold'}}>
+                                {entry.effectLine}
                               </div>
                             </li>
                           );
