@@ -36,7 +36,7 @@ type BattleLogEntry = {
 
 const initialBattleState: BattleState = {
   turn: 1,
-  maxTurns: 8,
+  maxTurns: 6,
   momentum: { powerless: 0, powerful: 0 },
   credibility: { powerless: 3, powerful: 3 },
   crowd: { powerless: 0, powerful: 0 },
@@ -395,9 +395,6 @@ export default function Home() {
                   <div className="text-xs font-semibold uppercase tracking-wide mb-1 text-center">
                     Battle log
                   </div>
-                  <div className="text-[11px] mb-1 text-center">
-                    Press the space bar to reveal the next move, or enable Auto-run to let the battle play out automatically.
-                  </div>
                   <div
                     className={`rounded-lg p-2 ${
                       winner === "draw"
@@ -408,8 +405,8 @@ export default function Home() {
                     }`}
                   >
                     {battleLog.length === 0 ? (
-                      <div className="text-xs italic">
-                        Press space bar for first move.
+                      <div className="text-lg russo-one text-center" style={{ fontFamily: "var(--font-russo-one)" }}>
+                        Press space bar for trickster moves.
                       </div>
                     ) : (
                       <ul className="space-y-2 text-xs bg-white rounded p-2">
