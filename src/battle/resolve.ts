@@ -22,6 +22,11 @@ const computeSuccessProbability = (
   const def = MOVE_DEFS.find((m) => m.id === move)!;
   let p = def.base;
 
+  // Give powerless trickster a slight advantage on success probability
+  if (attacker === "powerless") {
+    p += 0.05;
+  }
+
   if (
     (move === "WORDPLAY_REFRAME" || move === "ESCAPE_SLIP") &&
     attackerTraitIds.includes("quick_tongue")

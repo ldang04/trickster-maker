@@ -38,7 +38,7 @@ const initialBattleState: BattleState = {
   turn: 1,
   maxTurns: 6,
   momentum: { powerless: 0, powerful: 0 },
-  credibility: { powerless: 3, powerful: 3 },
+  credibility: { powerless: 4, powerful: 3 }, // Powerless starts with slight advantage
   crowd: { powerless: 0, powerful: 0 },
   constraints: { powerless: [], powerful: [] },
   cooldowns: { powerless: {}, powerful: {} },
@@ -125,6 +125,17 @@ export default function Home() {
     setAutoRun(false);
   };
 
+  const resetToStart = () => {
+    setSelections(defaultSelections);
+    setBattleState(null);
+    setBattleLog([]);
+    setWinner(null);
+    setVictoryText(null);
+    setAutoRun(false);
+    setActiveTrait(null);
+    setHoverTrait(null);
+  };
+
   const checkWinner = (state: BattleState): Side | "draw" | null => {
     const sides: Side[] = ["powerless", "powerful"];
     for (const side of sides) {
@@ -141,11 +152,13 @@ export default function Home() {
       const momPowerful = state.momentum.powerful;
       if (momPowerless > momPowerful) return "powerless";
       if (momPowerful > momPowerless) return "powerful";
+      // If momentum tied, check crowd
       const crowdPowerless = state.crowd.powerless;
       const crowdPowerful = state.crowd.powerful;
       if (crowdPowerless > crowdPowerful) return "powerless";
       if (crowdPowerful > crowdPowerless) return "powerful";
-      return "draw";
+      // If both tied, give slight advantage to powerless
+      return "powerless";
     }
     return null;
   };
@@ -159,7 +172,7 @@ export default function Home() {
     const attackerTraits = getSelectedTraitIds(attacker);
     const defenderTraits = getSelectedTraitIds(defender);
 
-    const move = chooseMove(attacker, battleState, attackerTraits) ?? "STATUS_FLEX";
+    const move = chooseMove(attacker, battleState, attackerTraits) ?? "PERSUADE_FRAME";
 
     const before: BattleState = JSON.parse(JSON.stringify(battleState));
     const { success, stateAfter } = resolveMove(
@@ -406,7 +419,7 @@ export default function Home() {
               {battleState ? (
                 <div className="space-y-2" style={{ fontFamily: "var(--font-varela-round)", color: "#756550" }}>
                   <div className="flex items-center justify-center gap-2 mb-1">
-                    <div className="text-xs font-semibold uppercase tracking-wide">
+                    <div className="text-xs font-bold uppercase tracking-wide">
                       Battle log
                     </div>
                     {battleState && !winner && battleLog.length > 0 && (
@@ -429,8 +442,8 @@ export default function Home() {
                   >
                     {battleLog.length === 0 ? (
                       <div className="space-y-3">
-                        <div className="text-center typewriter-text" style={{ fontFamily: "'Courier New', Courier, monospace", fontWeight: 'bold', fontSize: '14px', color: '#756550', whiteSpace: 'normal', wordWrap: 'break-word' }}>
-                          The powerless and powerful trickster face off in front of onlookers. Only the crowd can decide who wins the battle
+                        <div className="text-center intro-typewriter" style={{ fontFamily: "'Courier New', Courier, monospace", fontWeight: 'bold', fontSize: '14px', color: '#756550' }}>
+                          The powerless and powerful trickster face off in front of onlookers. Only the crowd can decide who wins the battle.
                         </div>
                         <div className="text-center" style={{ fontFamily: "var(--font-russo-one)", fontSize: '16px', color: '#756550' }}>
                           Press space to get trickster move
@@ -490,6 +503,20 @@ export default function Home() {
                           : "Trickster in Power wins"}
                       </div>
                       <p>{victoryText}</p>
+                    </div>
+                  )}
+                  {winner && (
+                    <div className="mt-4 flex justify-center">
+                      <button
+                        onClick={resetToStart}
+                        className="rounded-full px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
+                        style={{
+                          fontFamily: "var(--font-russo-one)",
+                          backgroundColor: "#f6b25b",
+                        }}
+                      >
+                        Play Again
+                      </button>
                     </div>
                   )}
                 </div>

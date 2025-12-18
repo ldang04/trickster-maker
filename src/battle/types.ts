@@ -1,18 +1,26 @@
 export type Side = "powerless" | "powerful";
 
 export type MoveType =
-  | "PLANT_RUMOR"
-  | "BRIBE"
-  | "BUREAUCRACY_TRAP"
-  | "STATUS_FLEX"
-  | "DELEGATE"
-  | "TECH_SURVEIL"
-  | "OBJECT_TRICK"
-  | "WORDPLAY_REFRAME"
-  | "PLAY_DUMB"
-  | "RIDICULE_LAUGH"
-  | "SCHEME_SETUP"
-  | "ESCAPE_SLIP";
+  | "PERSUADE_FRAME"
+  | "LAUGH_DISARM"
+  | "SEDUCE_ENTANGLE"
+  | "NORM_REFUSAL"
+  | "IDENTITY_FORGERY"
+  | "PICARO_HUSTLE"
+  | "HOLY_TRUTH"
+  | "RULES_WEAPONIZE"
+  | "LITERAL_OVEROBEY"
+  | "QUEST_CONTROL"
+  | "DELEGATE_ENFORCE"
+  | "CHAOS_ESCALATE"
+  | "SOCIAL_CONTAMINATION"
+  | "MONEY_SOLVE"
+  | "MEDIA_SPIN"
+  | "TECH_LEVERAGE"
+  | "OBJECT_CONTROL"
+  | "MAGIC_EXCEPTION"
+  | "IMPLIED_THREAT"
+  | "BORDER_ADVANTAGE";
 
 export type Constraint =
   | "DISCREdited"

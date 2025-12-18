@@ -155,3 +155,13 @@ body {
   animation: typewriter-left-to-right 2s steps(40, end) 1.5s;
   animation-fill-mode: both;
 }
+
+.intro-typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 100%;
+  animation: typewriter-left-to-right 2.5s steps(50, end);
+  animation-fill-mode: both;
+}

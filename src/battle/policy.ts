@@ -37,14 +37,17 @@ const hasAnyTrait = (selectedTraitIds: string[], required?: string[]) => {
   return required.some((id) => selectedTraitIds.includes(id));
 };
 
+const hasUsedMove = (state: BattleState, side: Side, move: MoveType): boolean => {
+  return state.history.some((entry) => entry.side === side && entry.move === move);
+};
+
 const isBigMove = (move: MoveType) =>
   [
-    "PLANT_RUMOR",
-    "BRIBE",
-    "BUREAUCRACY_TRAP",
-    "STATUS_FLEX",
-    "DELEGATE",
-    "TECH_SURVEIL",
+    "MONEY_SOLVE",
+    "RULES_WEAPONIZE",
+    "DELEGATE_ENFORCE",
+    "TECH_LEVERAGE",
+    "MAGIC_EXCEPTION",
   ].includes(move);
 
 export const chooseMove = (
@@ -59,20 +62,40 @@ export const chooseMove = (
 
   const legal: MoveType[] = [];
 
+  const isTrapped = sideHasConstraint(state, side, "TRAPPED_IN_RULES");
+
   for (const def of MOVE_DEFS) {
     if (!def.allowedSides.includes(side)) continue;
-    if (!hasAnyTrait(selectedTraitIds, def.requiresAnyTraitIds)) continue;
-    if (isMoveOnCooldown(def.id, side, state)) continue;
-
-    if (sideHasConstraint(state, side, "TRAPPED_IN_RULES")) {
+    
+    // PERSUADE_FRAME requires "persuasion" trait specifically, always
+    if (def.id === "PERSUADE_FRAME") {
+      if (!selectedTraitIds.includes("persuasion")) {
+        continue;
+      }
+      // PERSUADE_FRAME can only be used once when trapped, then never again
+      if (isTrapped && hasUsedMove(state, side, "PERSUADE_FRAME")) {
+        continue;
+      }
+    }
+    
+    // When trapped, only allow escape moves
+    if (isTrapped) {
       if (
-        !["WORDPLAY_REFRAME", "PLAY_DUMB", "ESCAPE_SLIP", "SCHEME_SETUP"].includes(
+        !["PERSUADE_FRAME", "LITERAL_OVEROBEY", "BORDER_ADVANTAGE"].includes(
           def.id
         )
       ) {
         continue;
       }
+      // When trapped, LITERAL_OVEROBEY and BORDER_ADVANTAGE are available regardless of traits
+      // PERSUADE_FRAME already checked above - requires persuasion
+    } else {
+      // When not trapped, normal trait requirements apply
+      if (!hasAnyTrait(selectedTraitIds, def.requiresAnyTraitIds)) continue;
     }
+    
+    if (isMoveOnCooldown(def.id, side, state)) continue;
+    if (hasUsedMove(state, side, def.id)) continue; // Prevent repeating moves
 
     legal.push(def.id);
   }
@@ -100,33 +123,29 @@ export const chooseMove = (
     score += def.base * 2;
 
     if (isConstrained) {
-      if (["ESCAPE_SLIP", "WORDPLAY_REFRAME", "PLAY_DUMB"].includes(move)) {
+      if (["BORDER_ADVANTAGE", "PERSUADE_FRAME", "LITERAL_OVEROBEY"].includes(move)) {
         score += 1.5;
       }
     }
 
-    if (oppCred >= 3 && ["PLANT_RUMOR", "TECH_SURVEIL"].includes(move)) {
+    if (oppCred >= 3 && ["TECH_LEVERAGE", "MEDIA_SPIN"].includes(move)) {
       score += 1.2;
     }
 
-    if (myCrowd <= -1 && ["RIDICULE_LAUGH", "STATUS_FLEX"].includes(move)) {
+    if (myCrowd <= -1 && ["LAUGH_DISARM", "PERSUADE_FRAME"].includes(move)) {
       score += 1.0;
     }
 
-    if (hasScheme && move === "SCHEME_SETUP") {
+    if (hasLaughter && move === "LAUGH_DISARM") {
       score += 1.0;
     }
 
-    if (hasLaughter && move === "RIDICULE_LAUGH") {
-      score += 1.0;
-    }
-
-    if (hasRules && move === "BUREAUCRACY_TRAP") {
+    if (hasRules && (move === "RULES_WEAPONIZE" || move === "LITERAL_OVEROBEY")) {
       score += 0.8;
     }
 
     if (side === "powerless") {
-      if (["PLANT_RUMOR", "RIDICULE_LAUGH"].includes(move)) {
+      if (["LAUGH_DISARM", "PERSUADE_FRAME"].includes(move)) {
         score += 0.3;
       }
     } else {

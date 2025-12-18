@@ -37,61 +37,176 @@ const adjustMomentum = (state: BattleState, side: Side, delta: number) => {
   state.momentum[side] = clamp(state.momentum[side] + delta, -5, 5);
 };
 
+/**
+ * MOVE IDs below are FULLY ALIGNED to the final compressed category list:
+ * PERSUADE_FRAME, LAUGH_DISARM,
+ * SEDUCE_ENTANGLE, NORM_REFUSAL, IDENTITY_FORGERY, PICARO_HUSTLE, HOLY_TRUTH,
+ * RULES_WEAPONIZE, LITERAL_OVEROBEY, QUEST_CONTROL, DELEGATE_ENFORCE,
+ * CHAOS_ESCALATE, SOCIAL_CONTAMINATION,
+ * MONEY_SOLVE, MEDIA_SPIN,
+ * TECH_LEVERAGE, OBJECT_CONTROL, MAGIC_EXCEPTION, IMPLIED_THREAT,
+ * BORDER_ADVANTAGE
+ */
 export const MOVE_DEFS: MoveDef[] = [
+  // =======================
+  // TALK & NARRATIVE CONTROL
+  // =======================
+
   {
-    id: "PLANT_RUMOR",
+    id: "PERSUADE_FRAME",
     allowedSides: ["powerful", "powerless"],
-    requiresAnyTraitIds: [
-      "social_status",
-      "media_presence",
-      "quick_tongue",
-      "inflated_status",
-    ],
+    requiresAnyTraitIds: ["persuasion", "quick_tongue", "social_status", "media_presence"],
     base: 0.6,
     apply: ({ state, attacker, defender }) => {
-      adjustCred(state, defender, -1);
-      addConstraint(state, defender, "DISCREdited");
+      // Frame-setting: small cred nudge + momentum, slight crowd lift
+      adjustCred(state, defender, -0.5);
       adjustMomentum(state, attacker, 1);
+      adjustCrowd(state, attacker, 1);
     },
   },
+
   {
-    id: "BRIBE",
-    allowedSides: ["powerful"],
-    requiresAnyTraitIds: ["money"],
-    base: 0.7,
+    id: "LAUGH_DISARM",
+    allowedSides: ["powerless"],
+    requiresAnyTraitIds: ["laughter", "jester", "performativity", "simpleton"],
+    base: 0.6,
+    cooldownTurns: 1,
+    apply: ({ state, attacker, defender }) => {
+      // Laughter makes threats land softer + shakes defender's composure
+      removeConstraint(state, attacker, ["INTIMIDATED"]);
+      addConstraint(state, defender, "OFF_BALANCE");
+      adjustCrowd(state, attacker, 1);
+    },
+  },
+
+  // =======================
+  // STATUS & PERSONA PLAY
+  // =======================
+
+  {
+    id: "SEDUCE_ENTANGLE",
+    allowedSides: ["powerless"],
+    requiresAnyTraitIds: ["seductive_trickstar"],
+    base: 0.6,
     cooldownTurns: 2,
     apply: ({ state, attacker, defender }) => {
-      if (state.constraints[attacker].length) {
-        state.constraints[attacker] = state.constraints[attacker].slice(1);
-      } else {
-        addConstraint(state, defender, "CENSORED");
-        adjustCred(state, defender, -1);
-      }
-    },
-  },
-  {
-    id: "BUREAUCRACY_TRAP",
-    allowedSides: ["powerful", "powerless"],
-    requiresAnyTraitIds: ["rules_laws", "literalism"],
-    base: 0.55,
-    cooldownTurns: 2,
-    apply: ({ state, defender }) => {
-      addConstraint(state, defender, "TRAPPED_IN_RULES");
-      adjustMomentum(state, defender, -1);
-    },
-  },
-  {
-    id: "STATUS_FLEX",
-    allowedSides: ["powerful", "powerless"],
-    requiresAnyTraitIds: ["social_status", "inflated_status", "media_presence"],
-    base: 0.65,
-    apply: ({ state, attacker }) => {
+      // Soft entanglement: composure drop + crowd gain
+      addConstraint(state, defender, "OFF_BALANCE");
       adjustCrowd(state, attacker, 1);
+      adjustCred(state, defender, -0.5);
+    },
+  },
+
+  {
+    id: "NORM_REFUSAL",
+    allowedSides: ["powerless"],
+    requiresAnyTraitIds: ["nonseductive_trickstar"],
+    base: 0.6,
+    cooldownTurns: 2,
+    apply: ({ state, attacker, defender }) => {
+      // Refuses the social script: destabilizes the interaction
+      addConstraint(state, defender, "OFF_BALANCE");
       adjustMomentum(state, attacker, 1);
     },
   },
+
   {
-    id: "DELEGATE",
+    id: "IDENTITY_FORGERY",
+    allowedSides: ["powerful", "powerless"],
+    requiresAnyTraitIds: ["shapeshifting_fox", "shapeshifting_power"],
+    base: 0.6,
+    cooldownTurns: 2,
+    apply: ({ state, attacker, defender }) => {
+      // Successful mask: clear exposure/censorship pressure, throw defender off
+      removeConstraint(state, attacker, ["EXPOSED", "CENSORED"]);
+      addConstraint(state, defender, "OFF_BALANCE");
+      adjustMomentum(state, attacker, 1);
+    },
+    onFail: ({ state, attacker }) => {
+      // Cover blown
+      addConstraint(state, attacker, "EXPOSED");
+      adjustMomentum(state, attacker, -1);
+    },
+  },
+
+  {
+    id: "PICARO_HUSTLE",
+    allowedSides: ["powerless"],
+    requiresAnyTraitIds: ["picaro"],
+    base: 0.6,
+    cooldownTurns: 1,
+    apply: ({ state, attacker, defender }) => {
+      // Fast hustle: momentum + minor credibility nick
+      adjustMomentum(state, attacker, 1);
+      adjustCred(state, defender, -0.5);
+    },
+  },
+
+  {
+    id: "HOLY_TRUTH",
+    allowedSides: ["powerless"],
+    requiresAnyTraitIds: ["holy_fool"],
+    base: 0.6,
+    cooldownTurns: 3,
+    apply: ({ state, attacker, defender }) => {
+      // Truth-bomb: hits cred + resists censorship
+      removeConstraint(state, attacker, ["CENSORED"]);
+      adjustCred(state, defender, -1);
+      adjustCrowd(state, attacker, 1);
+    },
+  },
+
+  // =======================
+  // SYSTEMS: RULES, TASKS, PROCEDURE
+  // =======================
+
+  {
+    id: "RULES_WEAPONIZE",
+    allowedSides: ["powerful"],
+    requiresAnyTraitIds: ["rules_laws"],
+    base: 0.55,
+    cooldownTurns: 2,
+    apply: ({ state, attacker, defender }) => {
+      addConstraint(state, defender, "TRAPPED_IN_RULES");
+      adjustCred(state, defender, -0.5);
+      adjustMomentum(state, attacker, 1);
+    },
+  },
+
+  {
+    id: "LITERAL_OVEROBEY",
+    allowedSides: ["powerful", "powerless"],
+    requiresAnyTraitIds: ["literalism"],
+    base: 0.55,
+    cooldownTurns: 2,
+    apply: ({ state, attacker, defender }) => {
+      // If already trapped, literalism converts into a sharper hit; otherwise it creates the trap.
+      if (state.constraints[defender].includes("TRAPPED_IN_RULES")) {
+        adjustCred(state, defender, -1);
+        addConstraint(state, defender, "OFF_BALANCE");
+      } else {
+        addConstraint(state, defender, "TRAPPED_IN_RULES");
+      }
+      adjustMomentum(state, attacker, 1);
+    },
+  },
+
+  {
+    id: "QUEST_CONTROL",
+    allowedSides: ["powerful"],
+    requiresAnyTraitIds: ["quests"],
+    base: 0.6,
+    cooldownTurns: 2,
+    apply: ({ state, attacker, defender }) => {
+      // Quest as control: binds defender into obligations (modeled as trap + off-balance)
+      addConstraint(state, defender, "TRAPPED_IN_RULES");
+      addConstraint(state, defender, "OFF_BALANCE");
+      adjustMomentum(state, attacker, 1);
+    },
+  },
+
+  {
+    id: "DELEGATE_ENFORCE",
     allowedSides: ["powerful"],
     requiresAnyTraitIds: ["delegation"],
     base: 0.6,
@@ -102,20 +217,87 @@ export const MOVE_DEFS: MoveDef[] = [
       adjustCred(state, defender, -1);
     },
   },
+
+  // =======================
+  // DISRUPTION & CHAOS
+  // =======================
+
   {
-    id: "TECH_SURVEIL",
+    id: "CHAOS_ESCALATE",
+    allowedSides: ["powerless"],
+    requiresAnyTraitIds: ["chaotic_pranks"],
+    base: 0.6,
+    cooldownTurns: 1,
+    apply: ({ state, defender }) => {
+      addConstraint(state, defender, "OFF_BALANCE");
+      adjustMomentum(state, defender, -1);
+    },
+  },
+
+  {
+    id: "SOCIAL_CONTAMINATION",
+    allowedSides: ["powerless"],
+    requiresAnyTraitIds: ["social_disruption"],
+    base: 0.55,
+    cooldownTurns: 3,
+    apply: ({ state, attacker, defender }) => {
+      // Persistent nuisance: slow, ugly pressure
+      adjustCrowd(state, defender, -1);
+      adjustCred(state, defender, -0.5);
+      adjustMomentum(state, attacker, 1);
+    },
+  },
+
+  // =======================
+  // RESOURCES / VISIBILITY / TECH / FORCE
+  // =======================
+
+  {
+    id: "MONEY_SOLVE",
+    allowedSides: ["powerful"],
+    requiresAnyTraitIds: ["money"],
+    base: 0.6,
+    cooldownTurns: 2,
+    apply: ({ state, attacker, defender }) => {
+      // Money as friction-removal: clear a self constraint OR apply soft pressure
+      if (state.constraints[attacker].length) {
+        state.constraints[attacker] = state.constraints[attacker].slice(1);
+        adjustMomentum(state, attacker, 1);
+      } else {
+        adjustCred(state, defender, -0.5);
+        adjustMomentum(state, attacker, 1);
+      }
+    },
+  },
+
+  {
+    id: "MEDIA_SPIN",
+    allowedSides: ["powerful"],
+    requiresAnyTraitIds: ["media_presence"],
+    base: 0.6,
+    cooldownTurns: 2,
+    apply: ({ state, attacker, defender }) => {
+      adjustCrowd(state, defender, -1);
+      addConstraint(state, defender, "DISCREdited");
+      adjustMomentum(state, attacker, 1);
+    },
+  },
+
+  {
+    id: "TECH_LEVERAGE",
     allowedSides: ["powerful"],
     requiresAnyTraitIds: ["technology"],
     base: 0.6,
     cooldownTurns: 2,
     apply: ({ state, attacker, defender }) => {
       addConstraint(state, defender, "EXPOSED");
-      adjustCrowd(state, defender, -1);
+      adjustCred(state, defender, -0.5);
       adjustMomentum(state, attacker, 1);
     },
   },
+
   {
-    id: "OBJECT_TRICK",
+    id: "OBJECT_CONTROL",
     allowedSides: ["powerful", "powerless"],
     requiresAnyTraitIds: ["object_manipulation"],
     base: 0.6,
@@ -124,62 +306,53 @@ export const MOVE_DEFS: MoveDef[] = [
       addConstraint(state, defender, "OFF_BALANCE");
     },
   },
+
   {
-    id: "WORDPLAY_REFRAME",
-    allowedSides: ["powerful", "powerless"],
-    requiresAnyTraitIds: ["quick_tongue", "literalism", "persuasion"],
-    base: 0.6,
+    id: "MAGIC_EXCEPTION",
+    allowedSides: ["powerful"],
+    requiresAnyTraitIds: ["magic"],
+    base: 0.65,
+    cooldownTurns: 3,
     apply: ({ state, attacker, defender }) => {
-      // Prefer clearing censoring / trapping constraints from self
-      removeConstraint(state, attacker, ["CENSORED", "TRAPPED_IN_RULES"]);
-      // Light credibility nudge against defender
-      adjustCred(state, defender, -0.5);
-    },
-  },
-  {
-    id: "PLAY_DUMB",
-    allowedSides: ["powerless"],
-    requiresAnyTraitIds: ["simpleton"],
-    base: 0.55,
-    apply: ({ state, attacker }) => {
-      removeConstraint(state, attacker, ["EXPOSED", "INTIMIDATED"]);
-    },
-  },
-  {
-    id: "RIDICULE_LAUGH",
-    allowedSides: ["powerless"],
-    requiresAnyTraitIds: ["laughter", "jester"],
-    base: 0.6,
-    cooldownTurns: 1,
-    apply: ({ state, attacker, defender }) => {
-      adjustCrowd(state, defender, -1);
-      adjustCrowd(state, attacker, 1);
+      // Beyond-human capacity: strong shove without needing procedural hooks
       addConstraint(state, defender, "OFF_BALANCE");
-    },
-  },
-  {
-    id: "SCHEME_SETUP",
-    allowedSides: ["powerless"],
-    requiresAnyTraitIds: ["scheme"],
-    base: 0.7,
-    cooldownTurns: 1,
-    apply: ({ state, attacker }) => {
-      // Represent a future bonus as momentum bump
+      adjustCred(state, defender, -1);
       adjustMomentum(state, attacker, 1);
     },
   },
+
   {
-    id: "ESCAPE_SLIP",
+    id: "IMPLIED_THREAT",
+    allowedSides: ["powerful"],
+    requiresAnyTraitIds: ["violence"],
+    base: 0.6,
+    cooldownTurns: 2,
+    apply: ({ state, attacker, defender }) => {
+      // Pressure through fear: crowd chills, defender loses momentum
+      addConstraint(state, defender, "INTIMIDATED");
+      adjustCrowd(state, defender, -1);
+      adjustMomentum(state, defender, -1);
+      adjustMomentum(state, attacker, 1);
+    },
+  },
+
+  // =======================
+  // BORDER-LIFE / LIMINALITY
+  // =======================
+
+  {
+    id: "BORDER_ADVANTAGE",
     allowedSides: ["powerful", "powerless"],
     requiresAnyTraitIds: ["liminality"],
     base: 0.6,
     cooldownTurns: 2,
-    apply: ({ state, attacker }) => {
+    apply: ({ state, attacker, defender }) => {
+      // Border-life: escape pressure + destabilize the other side
       removeConstraint(state, attacker, ["TRAPPED_IN_RULES", "CENSORED"]);
+      addConstraint(state, defender, "OFF_BALANCE");
       adjustMomentum(state, attacker, 1);
     },
     onFail: ({ state, attacker }) => {
-      // Failed escape costs a bit of momentum
       adjustMomentum(state, attacker, -1);
     },
   },
@@ -207,5 +380,3 @@ export const tickCooldowns = (state: BattleState) => {
     state.cooldowns[side] = next;
   });
 };
-
-
