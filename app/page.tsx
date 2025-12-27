@@ -485,6 +485,11 @@ export default function Home() {
                       </ul>
                     )}
                   </div>
+                  {battleLog.length > 0 && !winner && (
+                    <div className="mt-2 text-center" style={{ fontFamily: "var(--font-russo-one)", fontSize: '16px', color: '#756550' }}>
+                      Press space to continue
+                    </div>
+                  )}
                   {victoryText && (
                     <div
                       className={`mt-2 rounded-lg p-2 text-[11px] ${
